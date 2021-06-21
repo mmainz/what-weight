@@ -18,5 +18,10 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint", "import"],
-  "rules": { "import/order": "error", "import/newline-after-import": "error" }
+  "rules": {
+    "import/order": "error",
+    "import/newline-after-import": "error",
+    "react/prop-types": "off",
+    "@typescript-eslint/no-empty-function": "off"
+  }
 }
