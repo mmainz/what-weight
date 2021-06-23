@@ -3,9 +3,9 @@ import React from 'react';
 import { App } from '.';
 
 describe('App', () => {
-  it('renders something', async () => {
+  it('renders the weight input', () => {
     render(<App />);
 
-    expect(await screen.findByText('Hello, World!')).toBeInTheDocument();
+    expect(screen.getByText('Weight lifted:')).toBeInTheDocument();
   });
 });
