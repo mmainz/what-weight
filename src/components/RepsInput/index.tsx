@@ -1,35 +1,37 @@
 import {
+  HStack,
   InputGroup,
   Text,
-  HStack,
   NumberInput,
   NumberInputField,
 } from '@chakra-ui/react';
 import React from 'react';
 
 export type Props = {
-  weight?: number;
-  onWeightChanged: (weight?: number) => void;
+  reps?: number;
+  onRepsChanged: (reps?: number) => void;
 };
 
-export const WeightInput: React.FC<Props> = ({ weight, onWeightChanged }) => {
+export const RepsInput: React.FC<Props> = ({ reps, onRepsChanged }) => {
   const inputChanged = (_str: string, value: number) => {
-    if (isNaN(value)) return onWeightChanged(undefined);
-    return onWeightChanged(value);
+    if (isNaN(value)) return onRepsChanged(undefined);
+    return onRepsChanged(value);
   };
 
   return (
     <InputGroup>
       <HStack>
-        <Text id="weight-lifted-label">Weight lifted:</Text>
+        <Text id="reps-performed-label">Reps performed:</Text>
         <NumberInput
           size="lg"
           maxWidth={100}
-          aria-labelledby="weight-lifted-label"
-          value={weight || ''}
+          aria-labelledby="reps-performed-label"
+          value={reps || ''}
           onChange={inputChanged}
-          step={2.5}
-          precision={1}
+          min={1}
+          max={10}
+          step={1}
+          precision={0}
         >
           <NumberInputField />
         </NumberInput>
