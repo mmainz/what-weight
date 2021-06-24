@@ -1,10 +1,4 @@
-import {
-  InputGroup,
-  Text,
-  HStack,
-  NumberInput,
-  NumberInputField,
-} from '@chakra-ui/react';
+import { NumberInput, NumberInputField } from '@chakra-ui/react';
 import React from 'react';
 
 export type Props = {
@@ -19,21 +13,16 @@ export const WeightInput: React.FC<Props> = ({ weight, onWeightChanged }) => {
   };
 
   return (
-    <InputGroup>
-      <HStack>
-        <Text id="weight-lifted-label">Weight lifted:</Text>
-        <NumberInput
-          size="lg"
-          maxWidth={100}
-          aria-labelledby="weight-lifted-label"
-          value={weight || ''}
-          onChange={inputChanged}
-          step={2.5}
-          precision={1}
-        >
-          <NumberInputField />
-        </NumberInput>
-      </HStack>
-    </InputGroup>
+    <NumberInput
+      size="lg"
+      maxWidth={100}
+      aria-labelledby="weight-lifted-label"
+      value={weight || ''}
+      onChange={inputChanged}
+      step={2.5}
+      precision={1}
+    >
+      <NumberInputField data-testid="weight-input" />
+    </NumberInput>
   );
 };

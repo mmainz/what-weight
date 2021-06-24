@@ -10,19 +10,19 @@ describe('WeightInput', () => {
   it('accepts a weight', () => {
     render(<WeightInput weight={20} onWeightChanged={onWeightChanged} />);
 
-    expect(screen.getByLabelText('Weight lifted:')).toHaveValue('20');
+    expect(screen.getByTestId('weight-input')).toHaveValue('20');
   });
 
   it('sets the input to an empty string when weight is undefined', () => {
     render(<WeightInput onWeightChanged={onWeightChanged} />);
 
-    expect(screen.getByLabelText('Weight lifted:')).toHaveValue('');
+    expect(screen.getByTestId('weight-input')).toHaveValue('');
   });
 
   it('changes the weight when typing', () => {
     render(<WeightInput weight={20} onWeightChanged={onWeightChanged} />);
 
-    const input = screen.getByLabelText('Weight lifted:');
+    const input = screen.getByTestId('weight-input');
     act(() => {
       userEvent.type(input, '1');
     });
@@ -33,7 +33,7 @@ describe('WeightInput', () => {
   it('sets weight to undefined when clearing the input', () => {
     render(<WeightInput weight={20} onWeightChanged={onWeightChanged} />);
 
-    const input = screen.getByLabelText('Weight lifted:');
+    const input = screen.getByTestId('weight-input');
     act(() => {
       userEvent.clear(input);
     });

@@ -10,19 +10,19 @@ describe('RepsInput', () => {
   it('accepts a reps value', () => {
     render(<RepsInput reps={3} onRepsChanged={onRepsChanged} />);
 
-    expect(screen.getByLabelText('Reps performed:')).toHaveValue('3');
+    expect(screen.getByTestId('reps-input')).toHaveValue('3');
   });
 
   it('sets the input to an empty string when reps is undefined', () => {
     render(<RepsInput onRepsChanged={onRepsChanged} />);
 
-    expect(screen.getByLabelText('Reps performed:')).toHaveValue('');
+    expect(screen.getByTestId('reps-input')).toHaveValue('');
   });
 
   it('changes the reps when typing', () => {
     render(<RepsInput onRepsChanged={onRepsChanged} />);
 
-    const input = screen.getByLabelText('Reps performed:');
+    const input = screen.getByTestId('reps-input');
     act(() => {
       userEvent.type(input, '{backspace}4');
     });
@@ -33,7 +33,7 @@ describe('RepsInput', () => {
   it('sets the reps to undefined when clearing the input', () => {
     render(<RepsInput reps={3} onRepsChanged={onRepsChanged} />);
 
-    const input = screen.getByLabelText('Reps performed:');
+    const input = screen.getByTestId('reps-input');
     act(() => {
       userEvent.clear(input);
     });

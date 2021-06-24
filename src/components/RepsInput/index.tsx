@@ -1,10 +1,4 @@
-import {
-  HStack,
-  InputGroup,
-  Text,
-  NumberInput,
-  NumberInputField,
-} from '@chakra-ui/react';
+import { NumberInput, NumberInputField } from '@chakra-ui/react';
 import React from 'react';
 
 export type Props = {
@@ -19,23 +13,18 @@ export const RepsInput: React.FC<Props> = ({ reps, onRepsChanged }) => {
   };
 
   return (
-    <InputGroup>
-      <HStack>
-        <Text id="reps-performed-label">Reps performed:</Text>
-        <NumberInput
-          size="lg"
-          maxWidth={100}
-          aria-labelledby="reps-performed-label"
-          value={reps || ''}
-          onChange={inputChanged}
-          min={1}
-          max={10}
-          step={1}
-          precision={0}
-        >
-          <NumberInputField />
-        </NumberInput>
-      </HStack>
-    </InputGroup>
+    <NumberInput
+      size="lg"
+      maxWidth={100}
+      aria-labelledby="reps-performed-label"
+      value={reps || ''}
+      onChange={inputChanged}
+      min={1}
+      max={10}
+      step={1}
+      precision={0}
+    >
+      <NumberInputField data-testid="reps-input" />
+    </NumberInput>
   );
 };
