@@ -21,6 +21,7 @@
   "rules": {
     "import/order": "error",
     "import/newline-after-import": "error",
+    "no-useless-rename": "error",
     "react/prop-types": "off",
     "@typescript-eslint/no-empty-function": "off"
   }
