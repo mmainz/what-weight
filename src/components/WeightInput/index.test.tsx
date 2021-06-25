@@ -13,8 +13,8 @@ describe('WeightInput', () => {
     expect(screen.getByTestId('weight-input')).toHaveValue('20');
   });
 
-  it('sets the input to an empty string when weight is undefined', () => {
-    render(<WeightInput onWeightChanged={onWeightChanged} />);
+  it('sets the input to an empty string when weight is null', () => {
+    render(<WeightInput weight={null} onWeightChanged={onWeightChanged} />);
 
     expect(screen.getByTestId('weight-input')).toHaveValue('');
   });
@@ -30,7 +30,7 @@ describe('WeightInput', () => {
     expect(onWeightChanged).toHaveBeenCalledWith(201);
   });
 
-  it('sets weight to undefined when clearing the input', () => {
+  it('sets weight to null when clearing the input', () => {
     render(<WeightInput weight={20} onWeightChanged={onWeightChanged} />);
 
     const input = screen.getByTestId('weight-input');
@@ -38,11 +38,11 @@ describe('WeightInput', () => {
       userEvent.clear(input);
     });
 
-    expect(onWeightChanged).toHaveBeenCalledWith(undefined);
+    expect(onWeightChanged).toHaveBeenCalledWith(null);
   });
 
   it('sets value to 2.5 when clicking increment on empty field', () => {
-    render(<WeightInput onWeightChanged={onWeightChanged} />);
+    render(<WeightInput weight={null} onWeightChanged={onWeightChanged} />);
 
     act(() => {
       userEvent.click(screen.getByText('+'));
@@ -72,7 +72,7 @@ describe('WeightInput', () => {
   });
 
   it('sets value to 0 when clicking decrement on empty field', () => {
-    render(<WeightInput onWeightChanged={onWeightChanged} />);
+    render(<WeightInput weight={null} onWeightChanged={onWeightChanged} />);
 
     act(() => {
       userEvent.click(screen.getByText('-'));

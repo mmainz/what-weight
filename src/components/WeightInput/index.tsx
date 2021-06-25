@@ -2,21 +2,21 @@ import { Button, HStack, Input, useNumberInput } from '@chakra-ui/react';
 import React from 'react';
 
 export type Props = {
-  weight?: number;
-  onWeightChanged: (weight?: number) => void;
+  weight: number | null;
+  onWeightChanged: (weight: number | null) => void;
 };
 
 export const WeightInput: React.FC<Props> = ({ weight, onWeightChanged }) => {
   const { getInputProps } = useNumberInput({
     precision: 1,
     step: 2.5,
-    value: weight,
+    value: weight || '',
     min: 0,
   });
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value);
-    if (isNaN(value)) return onWeightChanged(undefined);
+    if (isNaN(value)) return onWeightChanged(null);
     return onWeightChanged(value);
   };
 
@@ -43,10 +43,7 @@ export const WeightInput: React.FC<Props> = ({ weight, onWeightChanged }) => {
   return (
     <HStack>
       <Button onClick={onDecrement}>-</Button>
-      <Input
-        data-testid="weight-input"
-        {...getInputProps({ onChange: onChange })}
-      />
+      <Input data-testid="weight-input" {...getInputProps({ onChange })} />
       <Button onClick={onIncrement}>+</Button>
     </HStack>
   );

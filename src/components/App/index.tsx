@@ -10,8 +10,8 @@ import { RepsInput } from '../RepsInput';
 import { WeightInput } from '../WeightInput';
 
 export const App: React.FC = () => {
-  const [liftedWeight, setLiftedWeight] = useState<number | undefined>();
-  const [repsPerformed, setRepsPerformed] = useState<number | undefined>();
+  const [liftedWeight, setLiftedWeight] = useState<number | null>(null);
+  const [repsPerformed, setRepsPerformed] = useState<number | null>(null);
 
   return (
     <ChakraProvider>
