@@ -4,7 +4,8 @@
     "build": "snowpack build",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prettier": "prettier --write **/*.{ts,tsx,js,json,html,md}",
+    "prettier": "prettier --write **/*.{ts,tsx,js,json,html,md,yml}",
+    "prettier:check": "prettier --check **/*.{ts,tsx,js,json,html,md,yml}",
     "eslint": "eslint --ext .tsx --ext .ts ."
   },
   "devDependencies": {
