@@ -6,13 +6,15 @@ import {
   Heading,
   Text,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React from 'react';
 import { RepsInput } from '../RepsInput';
+import { useRepsInput } from '../RepsInput/useRepsInput';
 import { WeightInput } from '../WeightInput';
+import { useWeightInput } from '../WeightInput/useWeightInput';
 
 export const App: React.FC = () => {
-  const [liftedWeight, setLiftedWeight] = useState<number | null>(null);
-  const [repsPerformed, setRepsPerformed] = useState<number | null>(null);
+  const { weightInputProps } = useWeightInput();
+  const { repsInputProps } = useRepsInput();
 
   return (
     <ChakraProvider>
@@ -33,10 +35,7 @@ export const App: React.FC = () => {
             </Text>
           </GridItem>
           <GridItem colStart={2} rowStart={2}>
-            <WeightInput
-              weight={liftedWeight}
-              onWeightChanged={setLiftedWeight}
-            />
+            <WeightInput {...weightInputProps} />
           </GridItem>
           <GridItem
             colStart={1}
@@ -50,7 +49,7 @@ export const App: React.FC = () => {
             </Text>
           </GridItem>
           <GridItem colStart={2} rowStart={3}>
-            <RepsInput reps={repsPerformed} onRepsChanged={setRepsPerformed} />
+            <RepsInput {...repsInputProps} />
           </GridItem>
         </Grid>
       </Container>

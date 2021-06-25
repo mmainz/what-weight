@@ -1,103 +1,50 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { WeightInput } from '.';
 
-const onWeightChanged = jest.fn();
+const onChange = jest.fn();
+const onIncrement = jest.fn();
+const onDecrement = jest.fn();
+
+const defaultProps = { onChange, onIncrement, onDecrement };
 
 describe('WeightInput', () => {
-  it('accepts a weight', () => {
-    render(<WeightInput weight={20} onWeightChanged={onWeightChanged} />);
+  it('renders the given value', () => {
+    render(<WeightInput {...defaultProps} value="2" />);
 
-    expect(screen.getByTestId('weight-input')).toHaveValue('20');
+    expect(screen.getByTestId('weight-input')).toHaveValue('2');
   });
 
-  it('sets the input to an empty string when weight is null', () => {
-    render(<WeightInput weight={null} onWeightChanged={onWeightChanged} />);
-
-    expect(screen.getByTestId('weight-input')).toHaveValue('');
-  });
-
-  it('changes the weight when typing', () => {
-    render(<WeightInput weight={20} onWeightChanged={onWeightChanged} />);
+  it('calls onChange when typing', () => {
+    render(<WeightInput {...defaultProps} value="2" />);
 
     const input = screen.getByTestId('weight-input');
     act(() => {
       userEvent.type(input, '1');
     });
 
-    expect(onWeightChanged).toHaveBeenCalledWith(201);
+    expect(onChange).toHaveBeenLastCalledWith('21', 21);
   });
 
-  it('sets weight to null when clearing the input', () => {
-    render(<WeightInput weight={20} onWeightChanged={onWeightChanged} />);
-
-    const input = screen.getByTestId('weight-input');
-    act(() => {
-      userEvent.clear(input);
-    });
-
-    expect(onWeightChanged).toHaveBeenCalledWith(null);
-  });
-
-  it('sets value to 2.5 when clicking increment on empty field', () => {
-    render(<WeightInput weight={null} onWeightChanged={onWeightChanged} />);
+  it('calls onIncrement when clicking the increment button', () => {
+    render(<WeightInput {...defaultProps} value="2" />);
 
     act(() => {
       userEvent.click(screen.getByText('+'));
     });
 
-    expect(onWeightChanged).toHaveBeenCalledWith(2.5);
+    expect(onIncrement).toHaveBeenCalledTimes(1);
   });
 
-  it('increments the value by 2.5 when clicking increment', () => {
-    render(<WeightInput weight={20} onWeightChanged={onWeightChanged} />);
-
-    act(() => {
-      userEvent.click(screen.getByText('+'));
-    });
-
-    expect(onWeightChanged).toHaveBeenCalledWith(22.5);
-  });
-
-  it('rounds to the next 2.5 increment when incrementing odd number', () => {
-    render(<WeightInput weight={11} onWeightChanged={onWeightChanged} />);
-
-    act(() => {
-      userEvent.click(screen.getByText('+'));
-    });
-
-    expect(onWeightChanged).toHaveBeenCalledWith(12.5);
-  });
-
-  it('sets value to 0 when clicking decrement on empty field', () => {
-    render(<WeightInput weight={null} onWeightChanged={onWeightChanged} />);
+  it('calls onDecrement when clicking the decrement button', () => {
+    render(<WeightInput {...defaultProps} value="2" />);
 
     act(() => {
       userEvent.click(screen.getByText('-'));
     });
 
-    expect(onWeightChanged).toHaveBeenCalledWith(0);
-  });
-
-  it('decrements the value by 2.5 when clicking decrement', () => {
-    render(<WeightInput weight={20} onWeightChanged={onWeightChanged} />);
-
-    act(() => {
-      userEvent.click(screen.getByText('-'));
-    });
-
-    expect(onWeightChanged).toHaveBeenCalledWith(17.5);
-  });
-
-  it('rounds to the next 2.5 increment when decrementing odd number', () => {
-    render(<WeightInput weight={11} onWeightChanged={onWeightChanged} />);
-
-    act(() => {
-      userEvent.click(screen.getByText('-'));
-    });
-
-    expect(onWeightChanged).toHaveBeenCalledWith(10);
+    expect(onDecrement).toHaveBeenCalledTimes(1);
   });
 });
