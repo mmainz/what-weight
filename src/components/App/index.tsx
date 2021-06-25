@@ -16,7 +16,7 @@ export const App: React.FC = () => {
   return (
     <ChakraProvider>
       <Container>
-        <Grid templateColumns="1fr 1fr 2fr" templateRows="1fr 1fr" gap={2}>
+        <Grid templateColumns="1fr 2fr 2fr" templateRows="1fr 1fr" gap={2}>
           <GridItem
             colStart={1}
             rowStart={1}
