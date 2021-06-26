@@ -1,5 +1,5 @@
-import { c as createCommonjsModule, a as commonjsGlobal } from '../common/_commonjsHelpers-798ad6a7.js';
 import { r as react } from '../common/index-404563d3.js';
+import { c as createCommonjsModule, a as commonjsGlobal } from '../common/_commonjsHelpers-798ad6a7.js';
 import '../common/extends-67cc7e97.js';
 
 /*
@@ -11911,6 +11911,14 @@ var Input$1 = /*#__PURE__*/forwardRef((props, ref) => {
 
 Input$1.id = "Input";
 
+/**
+ * Box is the most abstract component on top of which other chakra
+ * components are built. It renders a `div` element by default.
+ *
+ * @see Docs https://chakra-ui.com/box
+ */
+var Box = chakra("div");
+
 function _extends$o() { _extends$o = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$o.apply(this, arguments); }
 
 function _objectWithoutPropertiesLoose$6(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
@@ -12715,4 +12723,4 @@ function useNumberInput(props) {
   };
 }
 
-export { Button$1 as Button, ChakraProvider, Container$1 as Container, Grid, GridItem, HStack, Heading$1 as Heading, Input$1 as Input, Text, useNumberInput };
+export { Box, Button$1 as Button, ChakraProvider, Container$1 as Container, Grid, GridItem, HStack, Heading$1 as Heading, Input$1 as Input, Text, useNumberInput };
