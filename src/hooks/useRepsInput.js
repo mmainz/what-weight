@@ -1,4 +1,4 @@
-import {useState} from "../../../_snowpack/pkg/react.js";
+import {useState} from "../../_snowpack/pkg/react.js";
 const minReps = 1;
 const maxReps = 10;
 export const useRepsInput = (initialValue = "") => {
@@ -24,6 +24,13 @@ export const useRepsInput = (initialValue = "") => {
       return setValue(minReps.toString());
     setValue(newReps.toString());
   };
-  const props = {value, onChange, onIncrement, onDecrement};
-  return {repsInputProps: props, reps};
+  const repsInputProps = {
+    value,
+    onChange,
+    onIncrement,
+    onDecrement,
+    precision: 0,
+    step: 1
+  };
+  return {repsInputProps, reps};
 };

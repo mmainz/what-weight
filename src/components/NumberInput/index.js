@@ -5,22 +5,23 @@ import {
   useNumberInput
 } from "../../../_snowpack/pkg/@chakra-ui/react.js";
 import React from "../../../_snowpack/pkg/react.js";
-export const WeightInput = ({
+export const NumberInput = ({
   value,
   onChange,
   onIncrement,
-  onDecrement
+  onDecrement,
+  precision,
+  step
 }) => {
   const {getInputProps} = useNumberInput({
-    precision: 1,
-    step: 2.5,
+    precision,
+    step,
     value,
     onChange
   });
   return /* @__PURE__ */ React.createElement(HStack, null, /* @__PURE__ */ React.createElement(Button, {
     onClick: onDecrement
   }, "-"), /* @__PURE__ */ React.createElement(Input, {
-    "data-testid": "weight-input",
     ...getInputProps()
   }), /* @__PURE__ */ React.createElement(Button, {
     onClick: onIncrement

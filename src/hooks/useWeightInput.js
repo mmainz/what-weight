@@ -1,4 +1,4 @@
-import {useState} from "../../../_snowpack/pkg/react.js";
+import {useState} from "../../_snowpack/pkg/react.js";
 const minWeight = 1;
 export const useWeightInput = (initialValue = "") => {
   const [value, setValue] = useState(initialValue);
@@ -23,6 +23,13 @@ export const useWeightInput = (initialValue = "") => {
       return setValue(minWeight.toString());
     setValue(newWeight.toString());
   };
-  const props = {value, onChange, onIncrement, onDecrement};
-  return {weightInputProps: props, weight};
+  const weightInputProps = {
+    value,
+    onChange,
+    onIncrement,
+    onDecrement,
+    precision: 1,
+    step: 2.5
+  };
+  return {weightInputProps, weight};
 };
