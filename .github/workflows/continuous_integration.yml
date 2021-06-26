@@ -7,55 +7,33 @@ on:
     branches: [master]
 
 jobs:
-  setup:
+  ci:
+    name: Continuous Integration
     runs-on: ubuntu-latest
-    name: Setup Node.js 🖲
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Setup Node.js 🖲
+        uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - run: npm ci
 
-  prettier:
-    needs: setup
-    runs-on: ubuntu-latest
-    name: Prettier 💅
-    steps:
-      - uses: actions/checkout@v2
-      - run: npm run prettier:check
+      - name: Install dependencies 📦
+        run: npm ci
 
-  eslint:
-    needs: setup
-    runs-on: ubuntu-latest
-    name: eslint 🔍
-    steps:
-      - uses: actions/checkout@v2
-      - run: npm run eslint
+      - name: Prettier 💅
+        run: npm run prettier:check
 
-  test:
-    needs: setup
-    runs-on: ubuntu-latest
-    name: Test 🩺
-    steps:
-      - uses: actions/checkout@v2
-      - run: npm test
+      - name: eslint 🔍
+        run: npm run eslint
 
-  build:
-    needs: [setup, prettier, eslint, test]
-    runs-on: ubuntu-latest
-    name: Build 🛠
-    steps:
-      - uses: actions/checkout@v2
-      - run: npm run build
+      - name: Test 🩺
+        run: npm test
 
-  deploy:
-    needs: [build]
-    runs-on: ubuntu-latest
-    name: Deploy 🚀
-    steps:
-      - uses: actions/checkout@v2
-      - uses: JamesIves/github-pages-deploy-action@4.1.4
+      - name: Build 🛠
+        run: npm run build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
           folder: build
