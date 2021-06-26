@@ -7,34 +7,47 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
+      - name: Setup Node.js 🖲
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }} 🖲
-        uses: actions/setup-node@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '16'
+      - run: npm ci
 
-      - name: Install dependencies 📦
-        run: npm ci
+  prettier:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prettier 💅
+        run: npm run prettier:check
 
-      - name: Lint 🔍
-        run: |
-          npm run prettier:check
-          npm run eslint
+  eslint:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: eslint 🔍
+        run: npm run eslint
 
+  test:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
       - name: Test 🩺
         run: npm test
 
+  build:
+    needs: [setup, prettier, eslint, test]
+    runs-on: ubuntu-latest
+    steps:
       - name: Build 🛠
         run: npm run build
 
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
