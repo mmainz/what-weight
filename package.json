@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "snowpack dev --polyfill-node",
-    "build": "snowpack build",
+    "build": "snowpack build --polyfill-node",
     "test": "jest",
     "test:watch": "jest --watch",
     "prettier": "prettier --write **/*.{ts,tsx,js,json,html,md,yml}",
@@ -9,6 +9,7 @@
     "eslint": "eslint --ext .tsx --ext .ts ."
   },
   "devDependencies": {
+    "@snowpack/plugin-webpack": "^2.3.1",
     "@testing-library/dom": "^7.31.2",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
