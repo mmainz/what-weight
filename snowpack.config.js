@@ -5,5 +5,5 @@ export default {
   optimize: {},
   packageOptions: {},
   devOptions: {},
-  buildOptions: {}
+  buildOptions: {baseUrl: "/what-weight"}
 };
