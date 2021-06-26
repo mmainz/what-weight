@@ -22,35 +22,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Prettier 💅
-        run: npm run prettier:check
+      - run: npm run prettier:check
 
   eslint:
     needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: eslint 🔍
-        run: npm run eslint
+      - run: npm run eslint
 
   test:
     needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: Test 🩺
-        run: npm test
+      - run: npm test
 
   build:
     needs: [setup, prettier, eslint, test]
     runs-on: ubuntu-latest
     steps:
       - name: Build 🛠
-        run: npm run build
+      - run: npm run build
 
   deploy:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+      - uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
           folder: build
