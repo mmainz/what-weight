@@ -1,4 +1,3 @@
-import MLR from "../_snowpack/pkg/ml-regression-multivariate-linear.js";
 export const rpes = [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10];
 export const isRpe = (value) => rpes.includes(value);
 export const repetitions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -58,15 +57,9 @@ const rpeData = {
   ],
   6: [0.863, 0.837, 0.811, 0.786, 0.762, 0.739, 0.707, 0.68, 0.653, 0.626]
 };
-const xData = rpes.flatMap((rpe) => rpeData[rpe].map((_percentage, index) => [
-  rpe,
-  index + 1
-]));
-const yData = rpes.flatMap((rpe) => rpeData[rpe].map((percentage) => [percentage]));
-const regression = new MLR(xData, yData);
 export const calculateEstimatedMax = (weight, reps, rpe) => {
   if (reps === 1 && rpe === 10)
     return weight;
-  const [percentage] = regression.predict([rpe, reps]);
+  const percentage = rpeData[rpe][reps - 1];
   return weight / percentage;
 };

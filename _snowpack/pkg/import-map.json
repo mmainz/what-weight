@@ -2,7 +2,6 @@
   "imports": {
     "@chakra-ui/react": "./@chakra-ui/react.js",
     "@testing-library/jest-dom": "./@testing-library/jest-dom.js",
-    "ml-regression-multivariate-linear": "./ml-regression-multivariate-linear.js",
     "react": "./react.js",
     "react-dom": "./react-dom.js"
   }
