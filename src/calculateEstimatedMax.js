@@ -1,4 +1,72 @@
+import MLR from "../_snowpack/pkg/ml-regression-multivariate-linear.js";
+export const rpes = [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10];
+export const isRpe = (value) => rpes.includes(value);
+export const repetitions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+export const isRepetitionCount = (value) => repetitions.includes(value);
+const rpeData = {
+  10: [1, 0.955, 0.922, 0.892, 0.863, 0.837, 0.811, 0.786, 0.762, 0.739],
+  9.5: [
+    0.9775,
+    0.9385,
+    0.907,
+    0.8775,
+    0.85,
+    0.824,
+    0.7985,
+    0.774,
+    0.7505,
+    0.723
+  ],
+  9: [0.955, 0.922, 0.892, 0.863, 0.837, 0.811, 0.786, 0.762, 0.739, 0.707],
+  8.5: [
+    0.9385,
+    0.907,
+    0.8775,
+    0.85,
+    0.824,
+    0.7985,
+    0.774,
+    0.7505,
+    0.723,
+    0.6935
+  ],
+  8: [0.922, 0.892, 0.863, 0.837, 0.811, 0.786, 0.762, 0.739, 0.707, 0.68],
+  7.5: [
+    0.907,
+    0.8775,
+    0.85,
+    0.824,
+    0.7985,
+    0.774,
+    0.7505,
+    0.723,
+    0.6935,
+    0.6665
+  ],
+  7: [0.892, 0.863, 0.837, 0.811, 0.786, 0.762, 0.739, 0.707, 0.68, 0.653],
+  6.5: [
+    0.8775,
+    0.85,
+    0.824,
+    0.7985,
+    0.774,
+    0.7505,
+    0.723,
+    0.6935,
+    0.6665,
+    0.6395
+  ],
+  6: [0.863, 0.837, 0.811, 0.786, 0.762, 0.739, 0.707, 0.68, 0.653, 0.626]
+};
+const xData = rpes.flatMap((rpe) => rpeData[rpe].map((_percentage, index) => [
+  rpe,
+  index + 1
+]));
+const yData = rpes.flatMap((rpe) => rpeData[rpe].map((percentage) => [percentage]));
+const regression = new MLR(xData, yData);
 export const calculateEstimatedMax = (weight, reps, rpe) => {
-  const repsConsideringRpe = reps + 10 - rpe;
-  return weight * (1 + repsConsideringRpe / 30);
+  if (reps === 1 && rpe === 10)
+    return weight;
+  const [percentage] = regression.predict([rpe, reps]);
+  return weight / percentage;
 };

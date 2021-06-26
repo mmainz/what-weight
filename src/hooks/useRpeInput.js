@@ -1,9 +1,11 @@
 import {useState} from "../../_snowpack/pkg/react.js";
+import {isRpe} from "../calculateEstimatedMax.js";
 const minRpe = 6;
 const maxRpe = 10;
 export const useRpeInput = (initialValue = "") => {
   const [value, setValue] = useState(initialValue);
-  const rpe = parseFloat(value) || null;
+  const parsedValue = parseFloat(value) || null;
+  const rpe = isRpe(parsedValue) ? parsedValue : null;
   const onChange = (str) => {
     const newRpe = parseInt(str);
     if (newRpe >= maxRpe)
