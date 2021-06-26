@@ -1,5 +1,3 @@
-import MLR from 'ml-regression-multivariate-linear';
-
 export const rpes = [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10] as const;
 export type RPE = typeof rpes[number];
 export const isRpe = (value: unknown): value is RPE =>
@@ -30,18 +28,6 @@ const rpeData: Record<RPE, number[]> = {
   6: [0.863, 0.837, 0.811, 0.786, 0.762, 0.739, 0.707, 0.68, 0.653, 0.626],
 };
 
-const xData = rpes.flatMap((rpe) =>
-  rpeData[rpe].map((_percentage, index) => [
-    rpe,
-    (index + 1) as RepetitionCount,
-  ]),
-);
-const yData = rpes.flatMap((rpe) =>
-  rpeData[rpe].map((percentage) => [percentage]),
-);
-
-const regression = new MLR(xData, yData);
-
 export const calculateEstimatedMax = (
   weight: number,
   reps: RepetitionCount,
@@ -49,6 +35,6 @@ export const calculateEstimatedMax = (
 ): number => {
   if (reps === 1 && rpe === 10) return weight;
 
-  const [percentage] = regression.predict([rpe, reps]);
+  const percentage = rpeData[rpe][reps - 1];
   return weight / percentage;
 };
