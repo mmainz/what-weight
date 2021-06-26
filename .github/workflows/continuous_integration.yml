@@ -22,6 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Prettier 💅
     steps:
+      - uses: actions/checkout@v2
       - run: npm run prettier:check
 
   eslint:
@@ -29,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     name: eslint 🔍
     steps:
+      - uses: actions/checkout@v2
       - run: npm run eslint
 
   test:
@@ -36,6 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Test 🩺
     steps:
+      - uses: actions/checkout@v2
       - run: npm test
 
   build:
@@ -43,6 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build 🛠
     steps:
+      - uses: actions/checkout@v2
       - run: npm run build
 
   deploy:
@@ -50,6 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy 🚀
     steps:
+      - uses: actions/checkout@v2
       - uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
