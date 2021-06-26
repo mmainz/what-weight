@@ -1,14 +1,19 @@
 import { useState } from 'react';
+import { isRepetitionCount, RepetitionCount } from '../calculateEstimatedMax';
 import { Props } from '../components/NumberInput';
 
-export type UseRepsInputReturn = { repsInputProps: Props; reps: number | null };
+export type UseRepsInputReturn = {
+  repsInputProps: Props;
+  reps: RepetitionCount | null;
+};
 
 const minReps = 1;
 const maxReps = 10;
 
 export const useRepsInput = (initialValue = ''): UseRepsInputReturn => {
   const [value, setValue] = useState(initialValue);
-  const reps = parseInt(value) || null;
+  const parsedValue = parseInt(value) || null;
+  const reps = isRepetitionCount(parsedValue) ? parsedValue : null;
   const onChange: Props['onChange'] = (str) => {
     const newReps = parseInt(str);
     if (newReps >= maxReps) return setValue(maxReps.toString());

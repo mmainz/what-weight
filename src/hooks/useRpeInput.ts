@@ -1,14 +1,16 @@
 import { useState } from 'react';
+import { isRpe, RPE } from '../calculateEstimatedMax';
 import { Props } from '../components/NumberInput';
 
-export type UseRpeInputReturn = { rpeInputProps: Props; rpe: number | null };
+export type UseRpeInputReturn = { rpeInputProps: Props; rpe: RPE | null };
 
 const minRpe = 6;
 const maxRpe = 10;
 
 export const useRpeInput = (initialValue = ''): UseRpeInputReturn => {
   const [value, setValue] = useState(initialValue);
-  const rpe = parseFloat(value) || null;
+  const parsedValue = parseFloat(value) || null;
+  const rpe = isRpe(parsedValue) ? parsedValue : null;
   const onChange: Props['onChange'] = (str) => {
     const newRpe = parseInt(str);
     if (newRpe >= maxRpe) return setValue(maxRpe.toString());
