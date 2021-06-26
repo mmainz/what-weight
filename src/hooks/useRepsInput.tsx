@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Props } from '.';
+import { Props } from '../components/NumberInput';
 
 export type UseRepsInputReturn = { repsInputProps: Props; reps: number | null };
 
@@ -25,7 +25,14 @@ export const useRepsInput = (initialValue = ''): UseRepsInputReturn => {
     if (newReps <= minReps) return setValue(minReps.toString());
     setValue(newReps.toString());
   };
-  const props = { value, onChange, onIncrement, onDecrement };
+  const repsInputProps = {
+    value,
+    onChange,
+    onIncrement,
+    onDecrement,
+    precision: 0,
+    step: 1,
+  };
 
-  return { repsInputProps: props, reps };
+  return { repsInputProps, reps };
 };

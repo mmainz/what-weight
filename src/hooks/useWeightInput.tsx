@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Props } from '.';
+import { Props } from '../components/NumberInput';
 
 export type UseWeightInputReturn = {
   weightInputProps: Props;
@@ -31,7 +31,14 @@ export const useWeightInput = (initialValue = ''): UseWeightInputReturn => {
     if (newWeight <= minWeight) return setValue(minWeight.toString());
     setValue(newWeight.toString());
   };
-  const props = { value, onChange, onIncrement, onDecrement };
+  const weightInputProps = {
+    value,
+    onChange,
+    onIncrement,
+    onDecrement,
+    precision: 1,
+    step: 2.5,
+  };
 
-  return { weightInputProps: props, weight };
+  return { weightInputProps, weight };
 };

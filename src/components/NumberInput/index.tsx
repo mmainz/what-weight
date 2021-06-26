@@ -12,17 +12,21 @@ export type Props = {
   onChange: NonNullable<UseCounterProps['onChange']>;
   onIncrement: () => void;
   onDecrement: () => void;
+  precision: number;
+  step: number;
 };
 
-export const RepsInput: React.FC<Props> = ({
+export const NumberInput: React.FC<Props> = ({
   value,
   onChange,
   onIncrement,
   onDecrement,
+  precision,
+  step,
 }) => {
   const { getInputProps } = useNumberInput({
-    precision: 0,
-    step: 1,
+    precision,
+    step,
     value,
     onChange,
   });
@@ -30,7 +34,7 @@ export const RepsInput: React.FC<Props> = ({
   return (
     <HStack>
       <Button onClick={onDecrement}>-</Button>
-      <Input data-testid="reps-input" {...getInputProps()} />
+      <Input {...getInputProps()} />
       <Button onClick={onIncrement}>+</Button>
     </HStack>
   );

@@ -7,19 +7,20 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React from 'react';
-import { RepsInput } from '../RepsInput';
-import { useRepsInput } from '../RepsInput/useRepsInput';
-import { WeightInput } from '../WeightInput';
-import { useWeightInput } from '../WeightInput/useWeightInput';
+import { NumberInput } from '../NumberInput';
+import { useRepsInput } from '../../hooks/useRepsInput';
+import { useWeightInput } from '../../hooks/useWeightInput';
+import { useRpeInput } from '../../hooks/useRpeInput';
 
 export const App: React.FC = () => {
   const { weightInputProps } = useWeightInput();
   const { repsInputProps } = useRepsInput();
+  const { rpeInputProps } = useRpeInput();
 
   return (
     <ChakraProvider>
       <Container>
-        <Grid templateColumns="1fr 2fr" templateRows="1fr 1fr 1fr" gap={2}>
+        <Grid templateColumns="1fr 2fr" templateRows="1fr 1fr 1fr 1fr" gap={2}>
           <GridItem colStart={1} colEnd={3} rowStart={1}>
             <Heading>what weight!?</Heading>
           </GridItem>
@@ -35,7 +36,7 @@ export const App: React.FC = () => {
             </Text>
           </GridItem>
           <GridItem colStart={2} rowStart={2}>
-            <WeightInput {...weightInputProps} />
+            <NumberInput {...weightInputProps} />
           </GridItem>
           <GridItem
             colStart={1}
@@ -49,7 +50,21 @@ export const App: React.FC = () => {
             </Text>
           </GridItem>
           <GridItem colStart={2} rowStart={3}>
-            <RepsInput {...repsInputProps} />
+            <NumberInput {...repsInputProps} />
+          </GridItem>
+          <GridItem
+            colStart={1}
+            rowStart={4}
+            display="flex"
+            justifyContent="stretch"
+            alignItems="center"
+          >
+            <Text fontSize="xl" whiteSpace="nowrap">
+              At RPE:
+            </Text>
+          </GridItem>
+          <GridItem colStart={2} rowStart={4}>
+            <NumberInput {...rpeInputProps} />
           </GridItem>
         </Grid>
       </Container>
