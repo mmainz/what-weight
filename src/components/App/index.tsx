@@ -23,7 +23,7 @@ const maxFormatter = new Intl.NumberFormat('en-us', {
   maximumFractionDigits: 0,
 });
 const weightFormatter = new Intl.NumberFormat('en-us', {
-  maximumFractionDigits: 1,
+  maximumFractionDigits: 2,
 });
 
 const ResultContainer = chakra(GridItem, {

@@ -38,8 +38,9 @@ describe('weightCalculation', () => {
   });
 
   describe('calculateTargetWeight', () => {
-    it('calculates the target weight given 1RM, target reps and target RPE', () => {
-      expect(calculateTargetWeight(250, 2, 8)).toEqual(223);
+    it('calculates the rounded target weight given 1RM, target reps and target RPE', () => {
+      expect(calculateTargetWeight(250, 2, 8)).toEqual(225);
+      expect(calculateTargetWeight(250, 2, 8.5)).toEqual(227.5);
     });
   });
 });

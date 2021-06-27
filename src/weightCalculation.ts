@@ -43,4 +43,4 @@ export const calculateTargetWeight = (
   max: number,
   reps: RepetitionCount,
   rpe: RPE,
-): number => max * rpeData[rpe][reps - 1];
+): number => 2.5 * Math.ceil((max * rpeData[rpe][reps - 1]) / 2.5);
