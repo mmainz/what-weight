@@ -1,7 +1,9 @@
 import {
   Box,
+  chakra,
   ChakraProvider,
   Container,
+  FormLabel,
   Grid,
   GridItem,
   Heading,
@@ -15,6 +17,9 @@ import {useRpeInput} from "../../hooks/useRpeInput.js";
 import {calculateEstimatedMax} from "../../calculateEstimatedMax.js";
 const maxFormatter = new Intl.NumberFormat("en-us", {
   maximumFractionDigits: 0
+});
+const Label = chakra(FormLabel, {
+  baseStyle: {fontSize: "xl", whiteSpace: "nowrap", margin: 0}
 });
 export const App = () => {
   const {weightInputProps, weight: liftedWeight} = useWeightInput();
@@ -35,43 +40,42 @@ export const App = () => {
     display: "flex",
     justifyContent: "stretch",
     alignItems: "center"
-  }, /* @__PURE__ */ React.createElement(Text, {
-    fontSize: "xl",
-    whiteSpace: "nowrap",
-    textAlign: "center"
+  }, /* @__PURE__ */ React.createElement(Label, {
+    htmlFor: "weight-lifted"
   }, "Weight lifted:")), /* @__PURE__ */ React.createElement(GridItem, {
     colStart: 2,
     rowStart: 1
   }, /* @__PURE__ */ React.createElement(NumberInput, {
-    ...weightInputProps
+    ...weightInputProps,
+    id: "weight-lifted"
   })), /* @__PURE__ */ React.createElement(GridItem, {
     colStart: 1,
     rowStart: 2,
     display: "flex",
     justifyContent: "stretch",
     alignItems: "center"
-  }, /* @__PURE__ */ React.createElement(Text, {
-    fontSize: "xl",
-    whiteSpace: "nowrap"
+  }, /* @__PURE__ */ React.createElement(Label, {
+    htmlFor: "reps-performed"
   }, "Reps performed:")), /* @__PURE__ */ React.createElement(GridItem, {
     colStart: 2,
     rowStart: 2
   }, /* @__PURE__ */ React.createElement(NumberInput, {
-    ...repsInputProps
+    ...repsInputProps,
+    id: "reps-performed"
   })), /* @__PURE__ */ React.createElement(GridItem, {
     colStart: 1,
     rowStart: 3,
     display: "flex",
     justifyContent: "stretch",
     alignItems: "center"
-  }, /* @__PURE__ */ React.createElement(Text, {
-    fontSize: "xl",
-    whiteSpace: "nowrap"
+  }, /* @__PURE__ */ React.createElement(Label, {
+    htmlFor: "at-rpe"
   }, "At RPE:")), /* @__PURE__ */ React.createElement(GridItem, {
     colStart: 2,
     rowStart: 3
   }, /* @__PURE__ */ React.createElement(NumberInput, {
-    ...rpeInputProps
+    ...rpeInputProps,
+    id: "at-rpe"
   }))), /* @__PURE__ */ React.createElement(Box, {
     display: "flex",
     justifyContent: "center",

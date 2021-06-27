@@ -28,7 +28,7 @@ export const useWeightInput = (initialValue = "") => {
     onChange,
     onIncrement,
     onDecrement,
-    precision: 1,
+    precision: 0,
     step: 2.5
   };
   return {weightInputProps, weight};

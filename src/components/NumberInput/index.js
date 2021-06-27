@@ -6,6 +6,7 @@ import {
 } from "../../../_snowpack/pkg/@chakra-ui/react.js";
 import React from "../../../_snowpack/pkg/react.js";
 export const NumberInput = ({
+  id,
   value,
   onChange,
   onIncrement,
@@ -14,6 +15,7 @@ export const NumberInput = ({
   step
 }) => {
   const {getInputProps} = useNumberInput({
+    id,
     precision,
     step,
     value,
