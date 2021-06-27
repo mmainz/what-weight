@@ -1,7 +1,9 @@
 import {
   Box,
+  chakra,
   ChakraProvider,
   Container,
+  FormLabel,
   Grid,
   GridItem,
   Heading,
@@ -16,6 +18,10 @@ import { calculateEstimatedMax } from '../../calculateEstimatedMax';
 
 const maxFormatter = new Intl.NumberFormat('en-us', {
   maximumFractionDigits: 0,
+});
+
+const Label = chakra(FormLabel, {
+  baseStyle: { fontSize: 'xl', whiteSpace: 'nowrap', margin: 0 },
 });
 
 export const App: React.FC = () => {
@@ -42,12 +48,10 @@ export const App: React.FC = () => {
             justifyContent="stretch"
             alignItems="center"
           >
-            <Text fontSize="xl" whiteSpace="nowrap" textAlign="center">
-              Weight lifted:
-            </Text>
+            <Label htmlFor="weight-lifted">Weight lifted:</Label>
           </GridItem>
           <GridItem colStart={2} rowStart={1}>
-            <NumberInput {...weightInputProps} />
+            <NumberInput {...weightInputProps} id="weight-lifted" />
           </GridItem>
           <GridItem
             colStart={1}
@@ -56,12 +60,10 @@ export const App: React.FC = () => {
             justifyContent="stretch"
             alignItems="center"
           >
-            <Text fontSize="xl" whiteSpace="nowrap">
-              Reps performed:
-            </Text>
+            <Label htmlFor="reps-performed">Reps performed:</Label>
           </GridItem>
           <GridItem colStart={2} rowStart={2}>
-            <NumberInput {...repsInputProps} />
+            <NumberInput {...repsInputProps} id="reps-performed" />
           </GridItem>
           <GridItem
             colStart={1}
@@ -70,12 +72,10 @@ export const App: React.FC = () => {
             justifyContent="stretch"
             alignItems="center"
           >
-            <Text fontSize="xl" whiteSpace="nowrap">
-              At RPE:
-            </Text>
+            <Label htmlFor="at-rpe">At RPE:</Label>
           </GridItem>
           <GridItem colStart={2} rowStart={3}>
-            <NumberInput {...rpeInputProps} />
+            <NumberInput {...rpeInputProps} id="at-rpe" />
           </GridItem>
         </Grid>
         <Box

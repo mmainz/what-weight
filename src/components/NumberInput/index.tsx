@@ -8,6 +8,7 @@ import {
 import React from 'react';
 
 export type Props = {
+  id?: string;
   value: string;
   onChange: NonNullable<UseCounterProps['onChange']>;
   onIncrement: () => void;
@@ -17,6 +18,7 @@ export type Props = {
 };
 
 export const NumberInput: React.FC<Props> = ({
+  id,
   value,
   onChange,
   onIncrement,
@@ -25,6 +27,7 @@ export const NumberInput: React.FC<Props> = ({
   step,
 }) => {
   const { getInputProps } = useNumberInput({
+    id,
     precision,
     step,
     value,

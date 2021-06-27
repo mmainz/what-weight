@@ -32,7 +32,7 @@ export const useRpeInput = (initialValue = ''): UseRpeInputReturn => {
     onChange,
     onIncrement,
     onDecrement,
-    precision: 1,
+    precision: 0,
     step: 0.5,
   };
 
