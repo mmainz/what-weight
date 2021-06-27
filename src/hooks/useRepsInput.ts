@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { isRepetitionCount, RepetitionCount } from '../calculateEstimatedMax';
+import { isRepetitionCount, RepetitionCount } from '../weightCalculation';
 import { Props } from '../components/NumberInput';
 
 export type UseRepsInputReturn = {

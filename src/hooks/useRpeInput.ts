@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { isRpe, RPE } from '../calculateEstimatedMax';
+import { isRpe, RPE } from '../weightCalculation';
 import { Props } from '../components/NumberInput';
 
 export type UseRpeInputReturn = { rpeInputProps: Props; rpe: RPE | null };

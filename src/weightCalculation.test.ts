@@ -1,8 +1,9 @@
 import {
   calculateEstimatedMax,
+  calculateTargetWeight,
   RepetitionCount,
   RPE,
-} from './calculateEstimatedMax';
+} from './weightCalculation';
 
 const testValues: [number, RepetitionCount, RPE, number][] = [
   [200, 10, 10, 270.6359945872801],
@@ -23,14 +24,22 @@ const testValues: [number, RepetitionCount, RPE, number][] = [
   [250, 1, 9.5, 255.7544757033248],
 ];
 
-describe('calculateEstimatedMax', () => {
-  test.each(testValues)(
-    '%f kg for %i reps at %f RPE results in %i max',
-    (weight, reps, rpe, max) =>
-      expect(calculateEstimatedMax(weight, reps, rpe)).toEqual(max),
-  );
+describe('weightCalculation', () => {
+  describe('calculateEstimatedMax', () => {
+    test.each(testValues)(
+      '%f kg for %i reps at %f RPE results in %i max',
+      (weight, reps, rpe, max) =>
+        expect(calculateEstimatedMax(weight, reps, rpe)).toEqual(max),
+    );
 
-  it('returns the lifted weight when reps is one and RPE is ten', () => {
-    expect(calculateEstimatedMax(200, 1, 10)).toEqual(200);
+    it('returns the lifted weight when reps is one and RPE is ten', () => {
+      expect(calculateEstimatedMax(200, 1, 10)).toEqual(200);
+    });
+  });
+
+  describe('calculateTargetWeight', () => {
+    it('calculates the target weight given 1RM, target reps and target RPE', () => {
+      expect(calculateTargetWeight(250, 2, 8)).toEqual(223);
+    });
   });
 });

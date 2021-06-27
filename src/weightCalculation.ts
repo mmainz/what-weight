@@ -38,3 +38,9 @@ export const calculateEstimatedMax = (
   const percentage = rpeData[rpe][reps - 1];
   return weight / percentage;
 };
+
+export const calculateTargetWeight = (
+  max: number,
+  reps: RepetitionCount,
+  rpe: RPE,
+): number => max * rpeData[rpe][reps - 1];
