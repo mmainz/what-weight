@@ -1,7 +1,7 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 export default {
   mount: {},
-  plugins: [['@snowpack/plugin-webpack', {}]],
+  plugins: ['@snowpack/plugin-webpack', '@snowpack/plugin-react-refresh'],
   routes: [],
   optimize: {},
   packageOptions: {},

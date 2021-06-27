@@ -9,6 +9,7 @@
     "eslint": "eslint --ext .tsx --ext .ts ."
   },
   "devDependencies": {
+    "@snowpack/plugin-react-refresh": "^2.5.0",
     "@snowpack/plugin-webpack": "^2.3.1",
     "@testing-library/dom": "^7.31.2",
     "@testing-library/jest-dom": "^5.12.0",
