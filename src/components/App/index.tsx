@@ -3,6 +3,7 @@ import {
   chakra,
   ChakraProvider,
   Container,
+  extendTheme,
   FormLabel,
   Grid,
   GridItem,
@@ -10,6 +11,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React from 'react';
+import { createBreakpoints } from '@chakra-ui/theme-tools';
 import { NumberInput } from '../NumberInput';
 import { useRepsInput } from '../../hooks/useRepsInput';
 import { useWeightInput } from '../../hooks/useWeightInput';
@@ -18,6 +20,16 @@ import {
   calculateEstimatedMax,
   calculateTargetWeight,
 } from '../../weightCalculation';
+
+const breakpoints = createBreakpoints({
+  sm: '48em',
+  md: '62em',
+  lg: '80em',
+  xl: '96em',
+  '2xl': '112em',
+});
+
+const theme = extendTheme({ breakpoints });
 
 const maxFormatter = new Intl.NumberFormat('en-us', {
   maximumFractionDigits: 0,
@@ -65,15 +77,15 @@ export const App: React.FC = () => {
       : null;
 
   return (
-    <ChakraProvider>
-      <Container>
+    <ChakraProvider theme={theme}>
+      <Container maxWidth={['sm', '3xl']}>
         <Box display="flex" alignItems="center" height="4em">
           <Heading>what weight!?</Heading>
         </Box>
         <Grid
-          templateColumns="1fr 2fr"
+          templateColumns={['1fr 2fr', '1fr 2fr 1fr 2fr']}
           templateRows="1fr 1fr 1fr 2fr 1fr 1fr 2fr"
-          gap={2}
+          gap={[2, 4]}
         >
           <LabelContainer colStart={1} rowStart={1}>
             <Label htmlFor="weight-lifted">Weight lifted:</Label>
@@ -93,26 +105,26 @@ export const App: React.FC = () => {
           <GridItem colStart={2} rowStart={3}>
             <NumberInput {...actualRpeInputProps} id="at-rpe" />
           </GridItem>
-          <ResultContainer colStart={1} colEnd={-1} rowStart={4}>
+          <ResultContainer colStart={1} colEnd={[-1, 3]} rowStart={4}>
             {estimatedMax && (
               <Text fontSize="3xl">
                 1RM: {maxFormatter.format(estimatedMax)}
               </Text>
             )}
           </ResultContainer>
-          <LabelContainer colStart={1} rowStart={5}>
+          <LabelContainer colStart={[1, 3]} rowStart={[5, 1]}>
             <Label htmlFor="target-reps">Target reps:</Label>
           </LabelContainer>
-          <GridItem colStart={2} rowStart={5}>
+          <GridItem colStart={[2, 4]} rowStart={[5, 1]}>
             <NumberInput {...targetRepsInputProps} id="target-reps" />
           </GridItem>
-          <LabelContainer colStart={1} rowStart={6}>
+          <LabelContainer colStart={[1, 3]} rowStart={[6, 2]}>
             <Label htmlFor="target-rpe">Target RPE:</Label>
           </LabelContainer>
-          <GridItem colStart={2} rowStart={6}>
+          <GridItem colStart={[2, 4]} rowStart={[6, 2]}>
             <NumberInput {...targetRpeInputProps} id="target-rpe" />
           </GridItem>
-          <ResultContainer colStart={1} colEnd={-1} rowStart={7}>
+          <ResultContainer colStart={[1, 3]} colEnd={[-1, 5]} rowStart={[7, 4]}>
             {suggestedWeight && (
               <Text fontSize="3xl">
                 Weight: {weightFormatter.format(suggestedWeight)}
