@@ -26,6 +26,21 @@ const weightFormatter = new Intl.NumberFormat('en-us', {
   maximumFractionDigits: 1,
 });
 
+const ResultContainer = chakra(GridItem, {
+  baseStyle: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '5em',
+  },
+});
+const LabelContainer = chakra(GridItem, {
+  baseStyle: {
+    display: 'flex',
+    justifyContent: 'stretch',
+    alignItems: 'center',
+  },
+});
 const Label = chakra(FormLabel, {
   baseStyle: { fontSize: 'xl', whiteSpace: 'nowrap', margin: 0 },
 });
@@ -60,96 +75,50 @@ export const App: React.FC = () => {
           templateRows="1fr 1fr 1fr 2fr 1fr 1fr 2fr"
           gap={2}
         >
-          <GridItem
-            colStart={1}
-            rowStart={1}
-            display="flex"
-            justifyContent="stretch"
-            alignItems="center"
-          >
+          <LabelContainer colStart={1} rowStart={1}>
             <Label htmlFor="weight-lifted">Weight lifted:</Label>
-          </GridItem>
+          </LabelContainer>
           <GridItem colStart={2} rowStart={1}>
             <NumberInput {...weightInputProps} id="weight-lifted" />
           </GridItem>
-          <GridItem
-            colStart={1}
-            rowStart={2}
-            display="flex"
-            justifyContent="stretch"
-            alignItems="center"
-          >
+          <LabelContainer colStart={1} rowStart={2}>
             <Label htmlFor="reps-performed">Reps performed:</Label>
-          </GridItem>
+          </LabelContainer>
           <GridItem colStart={2} rowStart={2}>
             <NumberInput {...repsPerformedInputProps} id="reps-performed" />
           </GridItem>
-          <GridItem
-            colStart={1}
-            rowStart={3}
-            display="flex"
-            justifyContent="stretch"
-            alignItems="center"
-          >
+          <LabelContainer colStart={1} rowStart={3}>
             <Label htmlFor="at-rpe">At RPE:</Label>
-          </GridItem>
+          </LabelContainer>
           <GridItem colStart={2} rowStart={3}>
             <NumberInput {...actualRpeInputProps} id="at-rpe" />
           </GridItem>
-          <GridItem
-            colStart={1}
-            colEnd={-1}
-            rowStart={4}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            height="5em"
-          >
+          <ResultContainer colStart={1} colEnd={-1} rowStart={4}>
             {estimatedMax && (
               <Text fontSize="3xl">
                 1RM: {maxFormatter.format(estimatedMax)}
               </Text>
             )}
-          </GridItem>
-          <GridItem
-            colStart={1}
-            rowStart={5}
-            display="flex"
-            justifyContent="stretch"
-            alignItems="center"
-          >
+          </ResultContainer>
+          <LabelContainer colStart={1} rowStart={5}>
             <Label htmlFor="target-reps">Target reps:</Label>
-          </GridItem>
+          </LabelContainer>
           <GridItem colStart={2} rowStart={5}>
             <NumberInput {...targetRepsInputProps} id="target-reps" />
           </GridItem>
-          <GridItem
-            colStart={1}
-            rowStart={6}
-            display="flex"
-            justifyContent="stretch"
-            alignItems="center"
-          >
+          <LabelContainer colStart={1} rowStart={6}>
             <Label htmlFor="target-rpe">Target RPE:</Label>
-          </GridItem>
+          </LabelContainer>
           <GridItem colStart={2} rowStart={6}>
             <NumberInput {...targetRpeInputProps} id="target-rpe" />
           </GridItem>
-          <GridItem
-            colStart={1}
-            colEnd={-1}
-            rowStart={7}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            height="5em"
-          >
+          <ResultContainer colStart={1} colEnd={-1} rowStart={7}>
             {suggestedWeight && (
               <Text fontSize="3xl">
                 Weight: {weightFormatter.format(suggestedWeight)}
               </Text>
             )}
-          </GridItem>
+          </ResultContainer>
         </Grid>
       </Container>
     </ChakraProvider>
