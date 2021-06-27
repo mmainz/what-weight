@@ -1,4 +1,5 @@
 import { r as react } from '../common/index-404563d3.js';
+import { i as isObject, a as isNumber, w as warn, b as isNotNumber, c as isArray, d as isFunction, r as runIfFn, n as noop$1, e as isCssVar, f as isString, g as isEmptyObject, h as createBreakpoints, p as pipe, j as callAllHandlers, k as isNull, s as scheduleMicrotask } from '../common/create-breakpoints-40c5db68.js';
 import { c as createCommonjsModule, a as commonjsGlobal } from '../common/_commonjsHelpers-798ad6a7.js';
 import '../common/extends-67cc7e97.js';
 
@@ -1405,41 +1406,6 @@ function getLastItem(array) {
   var length = array == null ? 0 : array.length;
   return length ? array[length - 1] : undefined;
 }
-
-// Number assertions
-function isNumber(value) {
-  return typeof value === "number";
-}
-function isNotNumber(value) {
-  return typeof value !== "number" || Number.isNaN(value) || !Number.isFinite(value);
-}
-
-function isArray(value) {
-  return Array.isArray(value);
-}
-
-function isFunction(value) {
-  return typeof value === "function";
-} // Generic assertions
-
-function isObject(value) {
-  var type = typeof value;
-  return value != null && (type === "object" || type === "function") && !isArray(value);
-}
-function isEmptyObject(value) {
-  return isObject(value) && Object.keys(value).length === 0;
-}
-function isNull(value) {
-  return value == null;
-} // String assertions
-
-function isString(value) {
-  return Object.prototype.toString.call(value) === "[object String]";
-}
-function isCssVar(value) {
-  return /^var\(--.+\)$/.test(value);
-} // Empty assertions
-var __DEV__ = "production" !== "production";
 
 var lodash_mergewith = createCommonjsModule(function (module, exports) {
 /**
@@ -3681,59 +3647,6 @@ function isHTMLElement(element) {
   return element instanceof HTMLElement;
 }
 
-/* eslint-disable no-nested-ternary */
-function runIfFn(valueOrFn) {
-  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    args[_key - 1] = arguments[_key];
-  }
-
-  return isFunction(valueOrFn) ? valueOrFn(...args) : valueOrFn;
-}
-function callAllHandlers() {
-  for (var _len2 = arguments.length, fns = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    fns[_key2] = arguments[_key2];
-  }
-
-  return function func(event) {
-    fns.some(fn => {
-      fn == null ? void 0 : fn(event);
-      return event == null ? void 0 : event.defaultPrevented;
-    });
-  };
-}
-function once(fn) {
-  var result;
-  return function func() {
-    if (fn) {
-      for (var _len5 = arguments.length, args = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
-        args[_key5] = arguments[_key5];
-      }
-
-      result = fn.apply(this, args);
-      fn = null;
-    }
-
-    return result;
-  };
-}
-var noop = () => {};
-var warn = once(options => () => {
-  var {
-    condition,
-    message
-  } = options;
-
-  if (condition && __DEV__) {
-    console.warn(message);
-  }
-});
-
-var promiseMicrotask = callback => {
-  Promise.resolve().then(callback);
-};
-
-var scheduleMicrotask =  typeof queueMicrotask === "function" ? queueMicrotask : promiseMicrotask;
-
 // Original licensing for the following methods can be found in the
 function focus(element, options) {
   if (options === void 0) {
@@ -4218,8 +4131,8 @@ var classNames = {
  */
 var mockBody = {
   classList: {
-    add: noop,
-    remove: noop
+    add: noop$1,
+    remove: noop$1
   }
 };
 
@@ -4265,7 +4178,7 @@ function getColorScheme(fallback) {
 
 function addListener(fn) {
   if (!("matchMedia" in window)) {
-    return noop;
+    return noop$1;
   }
 
   var mediaQueryList = window.matchMedia(queries.dark);
@@ -4407,8 +4320,8 @@ function ColorModeProvider(props) {
 
   var context = react.useMemo(() => ({
     colorMode: value != null ? value : colorMode,
-    toggleColorMode: value ? noop : toggleColorMode,
-    setColorMode: value ? noop : setColorMode
+    toggleColorMode: value ? noop$1 : toggleColorMode,
+    setColorMode: value ? noop$1 : setColorMode
   }), [colorMode, setColorMode, toggleColorMode, value]);
   return /*#__PURE__*/react.createElement(ColorModeContext.Provider, {
     value: context
@@ -7988,17 +7901,6 @@ function orient(options) {
   return orientation === "vertical" ? vertical : horizontal;
 }
 
-function _extends$6() { _extends$6 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$6.apply(this, arguments); }
-var createBreakpoints = config => {
-  warn({
-    condition: true,
-    message: ["[chakra-ui]: createBreakpoints(...) will be deprecated pretty soon", "simply pass the breakpoints as an object. Remove the createBreakpoint(..) call"].join("")
-  });
-  return _extends$6({
-    base: "0em"
-  }, config);
-};
-
 var parts$1 = ["container", "title", "description", "icon"];
 var baseStyle$1 = {
   container: {
@@ -8148,7 +8050,7 @@ var spacing = {
  * Spacing tokens are a part of DefaultChakraTheme['sizes']
  */
 
-function _extends$7() { _extends$7 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$7.apply(this, arguments); }
+function _extends$6() { _extends$6 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$6.apply(this, arguments); }
 var largeSizes = {
   max: "max-content",
   min: "min-content",
@@ -8175,7 +8077,7 @@ var container = {
   xl: "1280px"
 };
 
-var sizes = _extends$7({}, spacing, largeSizes, {
+var sizes = _extends$6({}, spacing, largeSizes, {
   container
 });
 
@@ -8346,7 +8248,7 @@ var Breadcrumb = {
   baseStyle: baseStyle$4
 };
 
-function _extends$8() { _extends$8 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$8.apply(this, arguments); }
+function _extends$7() { _extends$7 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$7.apply(this, arguments); }
 var baseStyle$5 = {
   lineHeight: "1.2",
   borderRadius: "md",
@@ -8405,7 +8307,7 @@ function variantOutline$1(props) {
     colorScheme: c
   } = props;
   var borderColor = mode("gray.200", "whiteAlpha.300")(props);
-  return _extends$8({
+  return _extends$7({
     border: "1px solid",
     borderColor: c === "gray" ? borderColor : "currentColor"
   }, variantGhost(props));
@@ -8876,7 +8778,7 @@ var Modal = {
   defaultProps: defaultProps$8
 };
 
-function _extends$9() { _extends$9 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$9.apply(this, arguments); }
+function _extends$8() { _extends$8 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$8.apply(this, arguments); }
 var parts$6 = Modal.parts;
 /**
  * Since the `maxWidth` prop references theme.sizes internally,
@@ -8914,7 +8816,7 @@ function baseStyleDialog$1(props) {
   var {
     isFullHeight
   } = props;
-  return _extends$9({}, isFullHeight && {
+  return _extends$8({}, isFullHeight && {
     height: "100vh"
   }, {
     zIndex: "modal",
@@ -9502,7 +9404,7 @@ var typography$1 = {
 
 var _Input$baseStyle;
 
-function _extends$a() { _extends$a = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$a.apply(this, arguments); }
+function _extends$9() { _extends$9 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$9.apply(this, arguments); }
 var parts$c = ["root", "field", "stepper", "stepperGroup"];
 var {
   variants: variants$6,
@@ -9549,7 +9451,7 @@ function getSize$3(size) {
   };
   var resolvedFontSize = typography$1.fontSizes[sizeStyle.field.fontSize];
   return {
-    field: _extends$a({}, sizeStyle.field, {
+    field: _extends$9({}, sizeStyle.field, {
       paddingInlineEnd: "var(--number-input-field-padding)",
       verticalAlign: "top"
     }),
@@ -9581,9 +9483,9 @@ var NumberInput = {
   defaultProps: defaultProps$c
 };
 
-function _extends$b() { _extends$b = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$b.apply(this, arguments); }
+function _extends$a() { _extends$a = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$a.apply(this, arguments); }
 
-var baseStyle$n = _extends$b({}, Input.baseStyle.field, {
+var baseStyle$n = _extends$a({}, Input.baseStyle.field, {
   textAlign: "center"
 });
 
@@ -9682,7 +9584,7 @@ var Popover = {
   baseStyle: baseStyle$o
 };
 
-function _extends$c() { _extends$c = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$c.apply(this, arguments); }
+function _extends$b() { _extends$b = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$b.apply(this, arguments); }
 var parts$e = ["track", "filledTrack", "label"];
 
 function filledStyle(props) {
@@ -9696,7 +9598,7 @@ function filledStyle(props) {
   var bgColor = mode(c + ".500", c + ".200")(props);
   var gradient = "linear-gradient(\n    to right,\n    transparent 0%,\n    " + getColor(t, bgColor) + " 50%,\n    transparent 100%\n  )";
   var addStripe = !isIndeterminate && hasStripe;
-  return _extends$c({}, addStripe && stripeStyle, isIndeterminate ? {
+  return _extends$b({}, addStripe && stripeStyle, isIndeterminate ? {
     bgImage: gradient
   } : {
     bgColor
@@ -9717,7 +9619,7 @@ function baseStyleTrack(props) {
 }
 
 function baseStyleFilledTrack(props) {
-  return _extends$c({
+  return _extends$b({
     transitionProperty: "common",
     transitionDuration: "slow"
   }, filledStyle(props));
@@ -9762,16 +9664,16 @@ var Progress = {
   defaultProps: defaultProps$e
 };
 
-function _extends$d() { _extends$d = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$d.apply(this, arguments); }
+function _extends$c() { _extends$c = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$c.apply(this, arguments); }
 var parts$f = ["container", "control", "label"];
 
 function baseStyleControl$1(props) {
   var {
     control
   } = Checkbox.baseStyle(props);
-  return _extends$d({}, control, {
+  return _extends$c({}, control, {
     borderRadius: "full",
-    _checked: _extends$d({}, control["_checked"], {
+    _checked: _extends$c({}, control["_checked"], {
       _before: {
         content: "\"\"",
         display: "inline-block",
@@ -9830,11 +9732,11 @@ var Radio = {
   defaultProps: defaultProps$f
 };
 
-function _extends$e() { _extends$e = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$e.apply(this, arguments); }
+function _extends$d() { _extends$d = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$d.apply(this, arguments); }
 var parts$g = ["field", "icon"];
 
 function baseStyleField$1(props) {
-  return _extends$e({}, Input.baseStyle.field, {
+  return _extends$d({}, Input.baseStyle.field, {
     appearance: "none",
     paddingBottom: "1px",
     lineHeight: "normal",
@@ -9928,7 +9830,7 @@ var SkipLink = {
   baseStyle: baseStyle$t
 };
 
-function _extends$f() { _extends$f = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$f.apply(this, arguments); }
+function _extends$e() { _extends$e = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$e.apply(this, arguments); }
 var parts$h = ["container", "thumb", "track", "filledTrack"];
 
 function thumbOrientation(props) {
@@ -9955,7 +9857,7 @@ var baseStyleContainer$3 = props => {
   var {
     orientation
   } = props;
-  return _extends$f({
+  return _extends$e({
     _disabled: {
       opacity: 0.6,
       cursor: "default",
@@ -9983,7 +9885,7 @@ function baseStyleTrack$1(props) {
 }
 
 function baseStyleThumb(props) {
-  return _extends$f({
+  return _extends$e({
     zIndex: 1,
     borderRadius: "full",
     bg: "white",
@@ -10246,7 +10148,7 @@ var Switch = {
   defaultProps: defaultProps$j
 };
 
-function _extends$g() { _extends$g = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$g.apply(this, arguments); }
+function _extends$f() { _extends$f = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$f.apply(this, arguments); }
 var parts$k = ["table", "thead", "tbody", "tr", "th", "td", "caption"];
 var baseStyle$y = {
   table: {
@@ -10282,12 +10184,12 @@ var simpleVariant = props => {
     colorScheme: c
   } = props;
   return {
-    th: _extends$g({
+    th: _extends$f({
       color: mode("gray.600", "gray.400")(props),
       borderBottom: "1px",
       borderColor: mode(c + ".100", c + ".700")(props)
     }, numericStyles),
-    td: _extends$g({
+    td: _extends$f({
       borderBottom: "1px",
       borderColor: mode(c + ".100", c + ".700")(props)
     }, numericStyles),
@@ -10311,12 +10213,12 @@ var stripedVariant = props => {
     colorScheme: c
   } = props;
   return {
-    th: _extends$g({
+    th: _extends$f({
       color: mode("gray.600", "gray.400")(props),
       borderBottom: "1px",
       borderColor: mode(c + ".100", c + ".700")(props)
     }, numericStyles),
-    td: _extends$g({
+    td: _extends$f({
       borderBottom: "1px",
       borderColor: mode(c + ".100", c + ".700")(props)
     }, numericStyles),
@@ -10740,9 +10642,9 @@ var Tag = {
   defaultProps: defaultProps$m
 };
 
-function _extends$h() { _extends$h = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$h.apply(this, arguments); }
+function _extends$g() { _extends$g = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$g.apply(this, arguments); }
 
-var baseStyle$B = _extends$h({}, Input.baseStyle.field, {
+var baseStyle$B = _extends$g({}, Input.baseStyle.field, {
   paddingY: "8px",
   minHeight: "80px",
   lineHeight: "short",
@@ -11193,9 +11095,9 @@ var blur = {
   "3xl": "64px"
 };
 
-function _extends$i() { _extends$i = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$i.apply(this, arguments); }
+function _extends$h() { _extends$h = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$h.apply(this, arguments); }
 
-var foundations = _extends$i({
+var foundations = _extends$h({
   breakpoints: breakpoints$1,
   zIndices,
   radii,
@@ -11229,14 +11131,23 @@ var styles = {
   })
 };
 
-function _extends$j() { _extends$j = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$j.apply(this, arguments); }
+var requiredChakraThemeKeys = ["borders", "breakpoints", "colors", "components", "config", "direction", "fonts", "fontSizes", "fontWeights", "letterSpacings", "lineHeights", "radii", "shadows", "sizes", "space", "styles", "transition", "zIndices"];
+function isChakraTheme(unit) {
+  if (!isObject(unit)) {
+    return false;
+  }
+
+  return requiredChakraThemeKeys.every(propertyName => Object.prototype.hasOwnProperty.call(unit, propertyName));
+}
+
+function _extends$i() { _extends$i = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$i.apply(this, arguments); }
 var direction = "ltr";
 var config = {
   useSystemColorMode: false,
   initialColorMode: "light",
   cssVarPrefix: "chakra"
 };
-var theme = _extends$j({
+var theme = _extends$i({
   direction
 }, foundations, {
   components,
@@ -11301,7 +11212,7 @@ var doc = {
 };
 var ssrDocument = doc;
 
-var noop$1 = () => {};
+var noop = () => {};
 
 var win = {
   document: ssrDocument,
@@ -11311,8 +11222,8 @@ var win = {
   CustomEvent: function CustomEvent() {
     return this;
   },
-  addEventListener: noop$1,
-  removeEventListener: noop$1,
+  addEventListener: noop,
+  removeEventListener: noop,
 
   getComputedStyle() {
     return {
@@ -11326,8 +11237,8 @@ var win = {
   matchMedia() {
     return {
       matches: false,
-      addListener: noop$1,
-      removeListener: noop$1
+      addListener: noop,
+      removeListener: noop
     };
   },
 
@@ -11346,9 +11257,9 @@ var win = {
   },
 
   setTimeout: () => 0,
-  clearTimeout: noop$1,
+  clearTimeout: noop,
   setInterval: () => 0,
-  clearInterval: noop$1
+  clearInterval: noop
 };
 var ssrWindow = win;
 
@@ -11420,6 +11331,64 @@ var ChakraProvider = props => {
 };
 
 /**
+ * Function to override or customize the Chakra UI theme conveniently.
+ * First extension overrides the baseTheme and following extensions override the preceding extensions.
+ *
+ * @example:
+ * import { theme as baseTheme, extendTheme, withDefaultColorScheme } from '@chakra-ui/react'
+ *
+ * const customTheme = extendTheme(
+ *   {
+ *     colors: {
+ *       brand: {
+ *         500: "#b4d455",
+ *       },
+ *     },
+ *   },
+ *   withDefaultColorScheme({ colorScheme: "red" }),
+ *   baseTheme // optional
+ * )
+ */
+function extendTheme() {
+  for (var _len = arguments.length, extensions = new Array(_len), _key = 0; _key < _len; _key++) {
+    extensions[_key] = arguments[_key];
+  }
+
+  var overrides = [...extensions];
+  var baseTheme = extensions[extensions.length - 1];
+
+  if (isChakraTheme(baseTheme) && // this ensures backward compatibility
+  // previously only `extendTheme(override, baseTheme?)` was allowed
+  overrides.length > 1) {
+    overrides = overrides.slice(0, overrides.length - 1);
+  } else {
+    baseTheme = theme;
+  }
+
+  return pipe(...overrides.map(extension => prevTheme => isFunction(extension) ? extension(prevTheme) : mergeThemeOverride(prevTheme, extension)))(baseTheme);
+}
+function mergeThemeOverride() {
+  for (var _len2 = arguments.length, overrides = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    overrides[_key2] = arguments[_key2];
+  }
+
+  return lodash_mergewith({}, ...overrides, mergeThemeCustomizer);
+}
+
+function mergeThemeCustomizer(source, override, key, object) {
+  if ((isFunction(source) || isFunction(override)) && Object.prototype.hasOwnProperty.call(object, key)) {
+    return function () {
+      var sourceValue = isFunction(source) ? source(...arguments) : source;
+      var overrideValue = isFunction(override) ? override(...arguments) : override;
+      return lodash_mergewith({}, sourceValue, overrideValue, mergeThemeCustomizer);
+    };
+  } // fallback to default behaviour
+
+
+  return undefined;
+}
+
+/**
  * Styles to visually hide an element
  * but make it accessible to screen-readers
  */
@@ -11453,7 +11422,7 @@ var VisuallyHiddenInput = chakra("input", {
   baseStyle: visuallyHiddenStyle
 });
 
-function _extends$k() { _extends$k = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$k.apply(this, arguments); }
+function _extends$j() { _extends$j = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$j.apply(this, arguments); }
 
 function _objectWithoutPropertiesLoose$3(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 var spin = keyframes({
@@ -11486,7 +11455,7 @@ var Spinner$1 = /*#__PURE__*/forwardRef((props, ref) => {
 
   var _className = cx("chakra-spinner", className);
 
-  var spinnerStyles = _extends$k({
+  var spinnerStyles = _extends$j({
     display: "inline-block",
     borderColor: "currentColor",
     borderStyle: "solid",
@@ -11497,7 +11466,7 @@ var Spinner$1 = /*#__PURE__*/forwardRef((props, ref) => {
     animation: spin + " " + speed + " linear infinite"
   }, styles);
 
-  return /*#__PURE__*/react.createElement(chakra.div, _extends$k({
+  return /*#__PURE__*/react.createElement(chakra.div, _extends$j({
     ref: ref,
     __css: spinnerStyles,
     className: _className
@@ -11511,12 +11480,12 @@ var [ButtonGroupProvider, useButtonGroup] = createContext({
 
 function _objectWithoutPropertiesLoose$4(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _extends$l() { _extends$l = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$l.apply(this, arguments); }
+function _extends$k() { _extends$k = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$k.apply(this, arguments); }
 var Button$1 = /*#__PURE__*/forwardRef((props, ref) => {
   var _styles$_focus;
 
   var group = useButtonGroup();
-  var styles = useStyleConfig("Button", _extends$l({}, group, props));
+  var styles = useStyleConfig("Button", _extends$k({}, group, props));
 
   var _omitThemingProps = omitThemingProps(props),
       {
@@ -11548,7 +11517,7 @@ var Button$1 = /*#__PURE__*/forwardRef((props, ref) => {
     zIndex: 1
   });
 
-  var buttonStyles = _extends$l({
+  var buttonStyles = _extends$k({
     display: "inline-flex",
     appearance: "none",
     alignItems: "center",
@@ -11567,7 +11536,7 @@ var Button$1 = /*#__PURE__*/forwardRef((props, ref) => {
     ref: _ref,
     type: defaultType
   } = useButtonType(as);
-  return /*#__PURE__*/react.createElement(chakra.button, _extends$l({
+  return /*#__PURE__*/react.createElement(chakra.button, _extends$k({
     disabled: isDisabled || isLoading,
     ref: mergeRefs(ref, _ref),
     as: as,
@@ -11620,7 +11589,7 @@ var ButtonIcon = props => {
 
   var _className = cx("chakra-button__icon", className);
 
-  return /*#__PURE__*/react.createElement(chakra.span, _extends$l({
+  return /*#__PURE__*/react.createElement(chakra.span, _extends$k({
     display: "inline-flex",
     alignSelf: "center",
     flexShrink: 0
@@ -11647,7 +11616,7 @@ var ButtonSpinner = props => {
 
   var marginProp = placement === "start" ? "marginEnd" : "marginStart";
 
-  var spinnerStyles = _extends$l({
+  var spinnerStyles = _extends$k({
     display: "flex",
     alignItems: "center",
     position: label ? "relative" : "absolute",
@@ -11656,7 +11625,7 @@ var ButtonSpinner = props => {
     lineHeight: "normal"
   }, __css);
 
-  return /*#__PURE__*/react.createElement(chakra.div, _extends$l({
+  return /*#__PURE__*/react.createElement(chakra.div, _extends$k({
     className: _className
   }, rest, {
     __css: spinnerStyles
@@ -11816,7 +11785,7 @@ var [FormControlProvider, useFormControlContext] = createContext({
   name: "FormControlContext"
 });
 
-function _extends$m() { _extends$m = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$m.apply(this, arguments); }
+function _extends$l() { _extends$l = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$l.apply(this, arguments); }
 
 function _objectWithoutPropertiesLoose$5(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
@@ -11837,7 +11806,7 @@ function useFormControl(props) {
   } = _useFormControlProps,
       rest = _objectWithoutPropertiesLoose$5(_useFormControlProps, ["isDisabled", "isInvalid", "isReadOnly", "isRequired"]);
 
-  return _extends$m({}, rest, {
+  return _extends$l({}, rest, {
     disabled: isDisabled,
     readOnly: isReadOnly,
     required: isRequired,
@@ -11875,7 +11844,7 @@ function useFormControlProps(props) {
     labelIds.push(field.helpTextId);
   }
 
-  return _extends$m({}, rest, {
+  return _extends$l({}, rest, {
     "aria-describedby": labelIds.join(" ") || undefined,
     id: id != null ? id : field == null ? void 0 : field.id,
     isDisabled: (_ref = disabled != null ? disabled : isDisabled) != null ? _ref : field == null ? void 0 : field.isDisabled,
@@ -11887,7 +11856,7 @@ function useFormControlProps(props) {
   });
 }
 
-function _extends$n() { _extends$n = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$n.apply(this, arguments); }
+function _extends$m() { _extends$m = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$m.apply(this, arguments); }
 
 function _objectWithoutPropertiesLoose$6(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
@@ -11912,12 +11881,12 @@ var FormLabel$1 = /*#__PURE__*/forwardRef((passedProps, ref) => {
       rest = _objectWithoutPropertiesLoose$6(props, ["className", "children", "requiredIndicator"]);
 
   var field = useFormControlContext();
-  var ownProps = (_field$getLabelProps = field == null ? void 0 : field.getLabelProps(rest, ref)) != null ? _field$getLabelProps : _extends$n({
+  var ownProps = (_field$getLabelProps = field == null ? void 0 : field.getLabelProps(rest, ref)) != null ? _field$getLabelProps : _extends$m({
     ref
   }, rest);
-  return /*#__PURE__*/react.createElement(chakra.label, _extends$n({}, ownProps, {
+  return /*#__PURE__*/react.createElement(chakra.label, _extends$m({}, ownProps, {
     className: cx("chakra-form__label", props.className),
-    __css: _extends$n({
+    __css: _extends$m({
       display: "block",
       textAlign: "start"
     }, styles)
@@ -11933,13 +11902,13 @@ var RequiredIndicator = /*#__PURE__*/forwardRef((props, ref) => {
   var styles = useStyles();
   if (!(field != null && field.isRequired)) return null;
   var className = cx("chakra-form__required-indicator", props.className);
-  return /*#__PURE__*/react.createElement(chakra.span, _extends$n({}, field == null ? void 0 : field.getRequiredIndicatorProps(props, ref), {
+  return /*#__PURE__*/react.createElement(chakra.span, _extends$m({}, field == null ? void 0 : field.getRequiredIndicatorProps(props, ref), {
     __css: styles.requiredIndicator,
     className: className
   }));
 });
 
-function _extends$o() { _extends$o = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$o.apply(this, arguments); }
+function _extends$n() { _extends$n = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$n.apply(this, arguments); }
 
 /**
  * Input
@@ -11953,7 +11922,7 @@ var Input$1 = /*#__PURE__*/forwardRef((props, ref) => {
 
   var _className = cx("chakra-input", props.className);
 
-  return /*#__PURE__*/react.createElement(chakra.input, _extends$o({}, input, {
+  return /*#__PURE__*/react.createElement(chakra.input, _extends$n({}, input, {
     __css: styles.field,
     ref: ref,
     className: _className
@@ -11971,7 +11940,7 @@ Input$1.id = "Input";
  */
 var Box = chakra("div");
 
-function _extends$p() { _extends$p = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$p.apply(this, arguments); }
+function _extends$o() { _extends$o = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$o.apply(this, arguments); }
 
 function _objectWithoutPropertiesLoose$7(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
@@ -11992,11 +11961,11 @@ var Container$1 = /*#__PURE__*/forwardRef((props, ref) => {
       rest = _objectWithoutPropertiesLoose$7(_omitThemingProps, ["className", "centerContent"]);
 
   var styles = useStyleConfig("Container", props);
-  return /*#__PURE__*/react.createElement(chakra.div, _extends$p({
+  return /*#__PURE__*/react.createElement(chakra.div, _extends$o({
     ref: ref,
     className: cx("chakra-container", className)
   }, rest, {
-    __css: _extends$p({}, styles, centerContent && {
+    __css: _extends$o({}, styles, centerContent && {
       display: "flex",
       flexDirection: "column",
       alignItems: "center"
@@ -12004,7 +11973,7 @@ var Container$1 = /*#__PURE__*/forwardRef((props, ref) => {
   }));
 });
 
-function _extends$q() { _extends$q = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$q.apply(this, arguments); }
+function _extends$p() { _extends$p = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$p.apply(this, arguments); }
 
 function _objectWithoutPropertiesLoose$8(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
@@ -12048,7 +12017,7 @@ var Grid = /*#__PURE__*/forwardRef((props, ref) => {
     gridTemplateRows: templateRows,
     gridTemplateColumns: templateColumns
   };
-  return /*#__PURE__*/react.createElement(chakra.div, _extends$q({
+  return /*#__PURE__*/react.createElement(chakra.div, _extends$p({
     ref: ref,
     __css: styles
   }, rest));
@@ -12077,13 +12046,13 @@ var GridItem = /*#__PURE__*/forwardRef((props, ref) => {
     gridRowStart: rowStart,
     gridRowEnd: rowEnd
   });
-  return /*#__PURE__*/react.createElement(chakra.div, _extends$q({
+  return /*#__PURE__*/react.createElement(chakra.div, _extends$p({
     ref: ref,
     __css: styles
   }, rest));
 });
 
-function _extends$r() { _extends$r = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$r.apply(this, arguments); }
+function _extends$q() { _extends$q = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$q.apply(this, arguments); }
 
 function _objectWithoutPropertiesLoose$9(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 var Heading$1 = /*#__PURE__*/forwardRef((props, ref) => {
@@ -12092,7 +12061,7 @@ var Heading$1 = /*#__PURE__*/forwardRef((props, ref) => {
   var _omitThemingProps = omitThemingProps(props),
       rest = _objectWithoutPropertiesLoose$9(_omitThemingProps, ["className"]);
 
-  return /*#__PURE__*/react.createElement(chakra.h2, _extends$r({
+  return /*#__PURE__*/react.createElement(chakra.h2, _extends$q({
     ref: ref,
     className: cx("chakra-heading", props.className)
   }, rest, {
@@ -12179,11 +12148,11 @@ function getDividerStyles(options) {
 
 function _objectWithoutPropertiesLoose$a(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _extends$s() { _extends$s = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$s.apply(this, arguments); }
-var StackItem = props => /*#__PURE__*/react.createElement(chakra.div, _extends$s({
+function _extends$r() { _extends$r = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$r.apply(this, arguments); }
+var StackItem = props => /*#__PURE__*/react.createElement(chakra.div, _extends$r({
   className: "chakra-stack__item"
 }, props, {
-  __css: _extends$s({
+  __css: _extends$r({
     display: "inline-block",
     flex: "0 0 auto",
     minWidth: 0
@@ -12250,7 +12219,7 @@ var Stack = /*#__PURE__*/forwardRef((props, ref) => {
 
   var _className = cx("chakra-stack", className);
 
-  return /*#__PURE__*/react.createElement(chakra.div, _extends$s({
+  return /*#__PURE__*/react.createElement(chakra.div, _extends$r({
     ref: ref,
     display: "flex",
     alignItems: align,
@@ -12268,14 +12237,14 @@ var Stack = /*#__PURE__*/forwardRef((props, ref) => {
  */
 
 
-var HStack = /*#__PURE__*/forwardRef((props, ref) => /*#__PURE__*/react.createElement(Stack, _extends$s({
+var HStack = /*#__PURE__*/forwardRef((props, ref) => /*#__PURE__*/react.createElement(Stack, _extends$r({
   align: "center"
 }, props, {
   direction: "row",
   ref: ref
 })));
 
-function _extends$t() { _extends$t = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$t.apply(this, arguments); }
+function _extends$s() { _extends$s = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$s.apply(this, arguments); }
 
 function _objectWithoutPropertiesLoose$b(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
@@ -12295,7 +12264,7 @@ var Text = /*#__PURE__*/forwardRef((props, ref) => {
     textDecoration: props.decoration,
     textTransform: props.casing
   });
-  return /*#__PURE__*/react.createElement(chakra.p, _extends$t({
+  return /*#__PURE__*/react.createElement(chakra.p, _extends$s({
     ref: ref,
     className: cx("chakra-text", props.className)
   }, aliasedProps, rest, {
@@ -12427,7 +12396,7 @@ function isValidNumericKeyboardEvent(event) {
   return isFloatingPointNumericCharacter(event.key);
 }
 
-function _extends$u() { _extends$u = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$u.apply(this, arguments); }
+function _extends$t() { _extends$t = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$t.apply(this, arguments); }
 
 function _objectWithoutPropertiesLoose$c(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
@@ -12686,7 +12655,7 @@ function useNumberInput(props) {
     }
 
     var disabled = isDisabled || keepWithinRange && counter.isAtMax;
-    return _extends$u({}, props, {
+    return _extends$t({}, props, {
       ref,
       role: "button",
       tabIndex: -1,
@@ -12708,7 +12677,7 @@ function useNumberInput(props) {
     }
 
     var disabled = isDisabled || keepWithinRange && counter.isAtMin;
-    return _extends$u({}, props, {
+    return _extends$t({}, props, {
       ref,
       role: "button",
       tabIndex: -1,
@@ -12731,7 +12700,7 @@ function useNumberInput(props) {
       ref = null;
     }
 
-    return _extends$u({
+    return _extends$t({
       name,
       inputMode,
       type: "text",
@@ -12775,4 +12744,4 @@ function useNumberInput(props) {
   };
 }
 
-export { Box, Button$1 as Button, ChakraProvider, Container$1 as Container, FormLabel$1 as FormLabel, Grid, GridItem, HStack, Heading$1 as Heading, Input$1 as Input, Text, chakra, useNumberInput };
+export { Box, Button$1 as Button, ChakraProvider, Container$1 as Container, FormLabel$1 as FormLabel, Grid, GridItem, HStack, Heading$1 as Heading, Input$1 as Input, Text, chakra, extendTheme, useNumberInput };
