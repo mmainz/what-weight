@@ -1,5 +1,5 @@
 import {useState} from "../../_snowpack/pkg/react.js";
-import {isRpe} from "../calculateEstimatedMax.js";
+import {isRpe} from "../weightCalculation.js";
 const minRpe = 6;
 const maxRpe = 10;
 export const useRpeInput = (initialValue = "") => {

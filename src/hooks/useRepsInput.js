@@ -1,5 +1,5 @@
 import {useState} from "../../_snowpack/pkg/react.js";
-import {isRepetitionCount} from "../calculateEstimatedMax.js";
+import {isRepetitionCount} from "../weightCalculation.js";
 const minReps = 1;
 const maxReps = 10;
 export const useRepsInput = (initialValue = "") => {

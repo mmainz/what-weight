@@ -63,3 +63,4 @@ export const calculateEstimatedMax = (weight, reps, rpe) => {
   const percentage = rpeData[rpe][reps - 1];
   return weight / percentage;
 };
+export const calculateTargetWeight = (max, reps, rpe) => max * rpeData[rpe][reps - 1];
