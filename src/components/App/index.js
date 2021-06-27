@@ -24,6 +24,21 @@ const maxFormatter = new Intl.NumberFormat("en-us", {
 const weightFormatter = new Intl.NumberFormat("en-us", {
   maximumFractionDigits: 1
 });
+const ResultContainer = chakra(GridItem, {
+  baseStyle: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "5em"
+  }
+});
+const LabelContainer = chakra(GridItem, {
+  baseStyle: {
+    display: "flex",
+    justifyContent: "stretch",
+    alignItems: "center"
+  }
+});
 const Label = chakra(FormLabel, {
   baseStyle: {fontSize: "xl", whiteSpace: "nowrap", margin: 0}
 });
@@ -43,12 +58,9 @@ export const App = () => {
     templateColumns: "1fr 2fr",
     templateRows: "1fr 1fr 1fr 2fr 1fr 1fr 2fr",
     gap: 2
-  }, /* @__PURE__ */ React.createElement(GridItem, {
+  }, /* @__PURE__ */ React.createElement(LabelContainer, {
     colStart: 1,
-    rowStart: 1,
-    display: "flex",
-    justifyContent: "stretch",
-    alignItems: "center"
+    rowStart: 1
   }, /* @__PURE__ */ React.createElement(Label, {
     htmlFor: "weight-lifted"
   }, "Weight lifted:")), /* @__PURE__ */ React.createElement(GridItem, {
@@ -57,12 +69,9 @@ export const App = () => {
   }, /* @__PURE__ */ React.createElement(NumberInput, {
     ...weightInputProps,
     id: "weight-lifted"
-  })), /* @__PURE__ */ React.createElement(GridItem, {
+  })), /* @__PURE__ */ React.createElement(LabelContainer, {
     colStart: 1,
-    rowStart: 2,
-    display: "flex",
-    justifyContent: "stretch",
-    alignItems: "center"
+    rowStart: 2
   }, /* @__PURE__ */ React.createElement(Label, {
     htmlFor: "reps-performed"
   }, "Reps performed:")), /* @__PURE__ */ React.createElement(GridItem, {
@@ -71,12 +80,9 @@ export const App = () => {
   }, /* @__PURE__ */ React.createElement(NumberInput, {
     ...repsPerformedInputProps,
     id: "reps-performed"
-  })), /* @__PURE__ */ React.createElement(GridItem, {
+  })), /* @__PURE__ */ React.createElement(LabelContainer, {
     colStart: 1,
-    rowStart: 3,
-    display: "flex",
-    justifyContent: "stretch",
-    alignItems: "center"
+    rowStart: 3
   }, /* @__PURE__ */ React.createElement(Label, {
     htmlFor: "at-rpe"
   }, "At RPE:")), /* @__PURE__ */ React.createElement(GridItem, {
@@ -85,22 +91,15 @@ export const App = () => {
   }, /* @__PURE__ */ React.createElement(NumberInput, {
     ...actualRpeInputProps,
     id: "at-rpe"
-  })), /* @__PURE__ */ React.createElement(GridItem, {
+  })), /* @__PURE__ */ React.createElement(ResultContainer, {
     colStart: 1,
     colEnd: -1,
-    rowStart: 4,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "5em"
+    rowStart: 4
   }, estimatedMax && /* @__PURE__ */ React.createElement(Text, {
     fontSize: "3xl"
-  }, "1RM: ", maxFormatter.format(estimatedMax))), /* @__PURE__ */ React.createElement(GridItem, {
+  }, "1RM: ", maxFormatter.format(estimatedMax))), /* @__PURE__ */ React.createElement(LabelContainer, {
     colStart: 1,
-    rowStart: 5,
-    display: "flex",
-    justifyContent: "stretch",
-    alignItems: "center"
+    rowStart: 5
   }, /* @__PURE__ */ React.createElement(Label, {
     htmlFor: "target-reps"
   }, "Target reps:")), /* @__PURE__ */ React.createElement(GridItem, {
@@ -109,12 +108,9 @@ export const App = () => {
   }, /* @__PURE__ */ React.createElement(NumberInput, {
     ...targetRepsInputProps,
     id: "target-reps"
-  })), /* @__PURE__ */ React.createElement(GridItem, {
+  })), /* @__PURE__ */ React.createElement(LabelContainer, {
     colStart: 1,
-    rowStart: 6,
-    display: "flex",
-    justifyContent: "stretch",
-    alignItems: "center"
+    rowStart: 6
   }, /* @__PURE__ */ React.createElement(Label, {
     htmlFor: "target-rpe"
   }, "Target RPE:")), /* @__PURE__ */ React.createElement(GridItem, {
@@ -123,14 +119,10 @@ export const App = () => {
   }, /* @__PURE__ */ React.createElement(NumberInput, {
     ...targetRpeInputProps,
     id: "target-rpe"
-  })), /* @__PURE__ */ React.createElement(GridItem, {
+  })), /* @__PURE__ */ React.createElement(ResultContainer, {
     colStart: 1,
     colEnd: -1,
-    rowStart: 7,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "5em"
+    rowStart: 7
   }, suggestedWeight && /* @__PURE__ */ React.createElement(Text, {
     fontSize: "3xl"
   }, "Weight: ", weightFormatter.format(suggestedWeight))))));
