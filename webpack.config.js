@@ -12,6 +12,7 @@ module.exports = (env) => ({
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
+    publicPath: '/what-weight/',
   },
   module: {
     rules: [
@@ -37,7 +38,12 @@ module.exports = (env) => ({
   },
   devServer: {
     contentBase: './dist',
+    contentBasePublicPath: '/what-weight/',
+    publicPath: '/what-weight/',
+    compress: true,
     hot: true,
+    open: true,
+    openPage: 'what-weight/',
   },
   plugins: [
     new HtmlWebpackPlugin({
