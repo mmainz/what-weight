@@ -1,9 +1,0 @@
-{
-  "imports": {
-    "@chakra-ui/react": "./@chakra-ui/react.js",
-    "@chakra-ui/theme-tools": "./@chakra-ui/theme-tools.js",
-    "@testing-library/jest-dom": "./@testing-library/jest-dom.js",
-    "react": "./react.js",
-    "react-dom": "./react-dom.js"
-  }
-}
