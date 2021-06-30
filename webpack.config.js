@@ -40,6 +40,7 @@ module.exports = (env) => ({
   },
   plugins: [
     new HtmlWebpackPlugin({
+      title: 'what weight!?',
       filename: 'index.html',
     }),
     env.development && new HotModuleReplacementPlugin(),
