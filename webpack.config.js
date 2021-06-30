@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = (env) => ({
   mode: env.development ? 'development' : 'production',
@@ -42,6 +43,10 @@ module.exports = (env) => ({
     new HtmlWebpackPlugin({
       title: 'what weight!?',
       filename: 'index.html',
+    }),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
     }),
     env.development && new HotModuleReplacementPlugin(),
     env.development && new ReactRefreshWebpackPlugin({ forceEnable: true }),
