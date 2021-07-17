@@ -8,6 +8,7 @@ import {
   Grid,
   GridItem,
   Heading,
+  Img,
   Text,
 } from '@chakra-ui/react';
 import React from 'react';
@@ -20,6 +21,7 @@ import {
   calculateEstimatedMax,
   calculateTargetWeight,
 } from '../../weightCalculation';
+import Logo from '../../assets/logo-128.png';
 
 const breakpoints = createBreakpoints({
   sm: '48em',
@@ -79,8 +81,15 @@ export const App: React.FC = () => {
   return (
     <ChakraProvider theme={theme}>
       <Container maxWidth={['sm', '3xl']}>
-        <Box display="flex" alignItems="center" height="4em">
-          <Heading>what weight!?</Heading>
+        <Box
+          display="flex"
+          alignItems="center"
+          height="4em"
+          marginTop="0.5em"
+          marginBottom="0.5em"
+        >
+          <Img src={Logo} borderRadius="6px" height="4em" />
+          <Heading marginLeft="0.25em">what weight!?</Heading>
         </Box>
         <Grid
           templateColumns={['1fr 2fr', '1fr 2fr 1fr 2fr']}
