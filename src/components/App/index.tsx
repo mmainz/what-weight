@@ -21,7 +21,7 @@ import {
   calculateEstimatedMax,
   calculateTargetWeight,
 } from '../../weightCalculation';
-import Logo from '../../assets/logo-128.png';
+import Logo from '../../assets/logo.png';
 
 const breakpoints = createBreakpoints({
   sm: '48em',

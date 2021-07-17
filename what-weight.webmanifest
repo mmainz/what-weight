@@ -1,0 +1,31 @@
+{
+  "name": "what weight!?",
+  "short_name": "what weight!?",
+  "description": "A utility to calculate your set weights from previous sets.",
+  "icons": [
+    {
+      "src": "src/assets/logo-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "src/assets/logo-256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "src/assets/logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "src/assets/logo-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/what-weight/index.html",
+  "display": "fullscreen",
+  "theme_color": "#ffffff",
+  "background_color": "#c83200"
+}

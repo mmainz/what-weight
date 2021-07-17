@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = (env) => ({
   mode: env.development ? 'development' : 'production',
@@ -53,6 +54,22 @@ module.exports = (env) => ({
     new HtmlWebpackPlugin({
       title: 'what weight!?',
       filename: 'index.html',
+    }),
+    new FaviconsWebpackPlugin({
+      logo: './src/assets/logo.png',
+      inject: true,
+      mode: 'webapp',
+      devMode: 'webapp',
+      favicons: {
+        appName: 'what weight!?',
+        appDescription:
+          'A utility to calculate your set weights from previous sets.',
+        display: 'standalone',
+        orientation: 'portrait',
+        start_url: '/what-weight/',
+        background: '#963200',
+        theme_color: '#ffffff',
+      },
     }),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
