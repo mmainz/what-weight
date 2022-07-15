@@ -42,13 +42,13 @@ module.exports = (env) => ({
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
   },
   devServer: {
-    contentBase: './dist',
-    contentBasePublicPath: '/what-weight/',
-    publicPath: '/what-weight/',
+    static: {
+      directory: path.join(__dirname, 'dist'),
+      publicPath: '/what-weight/',
+    },
     compress: true,
     hot: true,
-    open: true,
-    openPage: 'what-weight/',
+    open: ['what-weight/'],
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { act } from 'react-dom/test-utils';
 import { NumberInput } from '.';
 
 const onChange = jest.fn();
@@ -23,33 +22,27 @@ describe('NumberInput', () => {
     expect(screen.getByRole('spinbutton')).toHaveValue('2');
   });
 
-  it('calls onChange when typing', () => {
+  it('calls onChange when typing', async () => {
     render(<NumberInput {...defaultProps} value="2" />);
 
     const input = screen.getByRole('spinbutton');
-    act(() => {
-      userEvent.type(input, '1');
-    });
+    await userEvent.type(input, '1');
 
     expect(onChange).toHaveBeenLastCalledWith('21', 21);
   });
 
-  it('calls onIncrement when clicking the increment button', () => {
+  it('calls onIncrement when clicking the increment button', async () => {
     render(<NumberInput {...defaultProps} value="2" />);
 
-    act(() => {
-      userEvent.click(screen.getByText('+'));
-    });
+    await userEvent.click(screen.getByText('+'));
 
     expect(onIncrement).toHaveBeenCalledTimes(1);
   });
 
-  it('calls onDecrement when clicking the decrement button', () => {
+  it('calls onDecrement when clicking the decrement button', async () => {
     render(<NumberInput {...defaultProps} value="2" />);
 
-    act(() => {
-      userEvent.click(screen.getByText('-'));
-    });
+    await userEvent.click(screen.getByText('-'));
 
     expect(onDecrement).toHaveBeenCalledTimes(1);
   });

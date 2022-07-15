@@ -12,7 +12,6 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React from 'react';
-import { createBreakpoints } from '@chakra-ui/theme-tools';
 import { NumberInput } from '../NumberInput';
 import { useRepsInput } from '../../hooks/useRepsInput';
 import { useWeightInput } from '../../hooks/useWeightInput';
@@ -23,13 +22,13 @@ import {
 } from '../../weightCalculation';
 import Logo from '../../assets/logo.png';
 
-const breakpoints = createBreakpoints({
+const breakpoints = {
   sm: '48em',
   md: '62em',
   lg: '80em',
   xl: '96em',
   '2xl': '112em',
-});
+};
 
 const theme = extendTheme({ breakpoints });
 

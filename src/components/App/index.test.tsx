@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { act } from 'react-dom/test-utils';
 import { App } from '.';
 
 describe('App', () => {
@@ -14,13 +13,11 @@ describe('App', () => {
     const targetRepsInput = screen.getByLabelText('Target reps:');
     const targetRpeInput = screen.getByLabelText('Target RPE:');
 
-    await act(async () => {
-      await userEvent.type(weightInput, '200', { delay: 1 });
-      userEvent.type(repsPerformedInput, '3');
-      userEvent.type(actualRpeInput, '9');
-      userEvent.type(targetRepsInput, '2');
-      userEvent.type(targetRpeInput, '8');
-    });
+    await userEvent.type(weightInput, '200', { delay: 1 });
+    await userEvent.type(repsPerformedInput, '3');
+    await userEvent.type(actualRpeInput, '9');
+    await userEvent.type(targetRepsInput, '2');
+    await userEvent.type(targetRpeInput, '8');
 
     expect(screen.getByText('1RM: 224')).toBeInTheDocument();
     expect(screen.getByText('Weight: 200')).toBeInTheDocument();
