@@ -1,24 +1,16 @@
-# New Project
+# what weight!?
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+This is a small React app that let's you estimate your [1RM](https://en.wikipedia.org/wiki/One-repetition_maximum) by using the [RPE](https://en.wikipedia.org/wiki/Rating_of_perceived_exertion) of a previous set.
+It also lets you calculate a target weight given your 1RM, target number of reps, and target RPE.
+It uses Mike Tuchscherers RPE table for estimating these values.
 
-## Available Scripts
+## Technology
 
-### npm start
+Since the app is mostly intended to be used on a phone, it uses a [service worker](https://web.dev/learn/pwa/service-workers/).
+This makes it work even when offline and also makes it installable on phones that support it.
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+## Development
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
-
-### npm run build
-
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
-
-**For the best production performance:** Add a build bundler plugin like [@snowpack/plugin-webpack](https://github.com/snowpackjs/snowpack/tree/main/plugins/plugin-webpack) or [snowpack-plugin-rollup-bundle](https://github.com/ParamagicDev/snowpack-plugin-rollup-bundle) to your `snowpack.config.mjs` config file.
-
-### Q: What about Eject?
-
-No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+After cloning the repository, run `npm install`.
+Then `npm start` to start the dev server.
+You can run the tests with `npm t`.
